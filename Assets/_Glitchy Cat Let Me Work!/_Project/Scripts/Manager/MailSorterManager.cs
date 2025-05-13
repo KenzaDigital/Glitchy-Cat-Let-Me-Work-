@@ -1,47 +1,89 @@
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+using System;
 
 public class MailSorterManager : MonoBehaviour
 {
-    public TextMeshProUGUI mailContentText;  // Texte � afficher
-    public MailData[] mails;  // Tableau des mails
+    [Header("UI")]
+    public TextMeshProUGUI mailText;
+    public Button proButton;
+    public Button spamButton;
+    public Slider productivitySlider;
 
-    private int currentIndex = 0;  // Suivi du mail actuel
+    [Header("Données")]
+    public MailData[] mails;
+
+    [Header("Réglages")]
+    public float productivity = 100f;
+    public float correctBonus = 10f;
+    public float wrongPenalty = 15f;
+
+    private int currentIndex = 0;
 
     void Start()
     {
-        ShowCurrentMail();
+      
+        
+            Debug.Log("Nombre de mails reçus : " + mails.Length);
+      
+
+        if (mails.Length == 0)
+        {
+            Debug.LogError("Aucun mail assigné !");
+            return;
+        }
+
+        ShowMail();
     }
 
-    void ShowCurrentMail()
+  
+
+    void ShowMail()
     {
-        if (mails.Length > 0 && currentIndex < mails.Length)
+        if (currentIndex >= mails.Length)
         {
-            MailData currentMail = mails[currentIndex];
-            mailContentText.text = currentMail.content;
+            mailText.text = " Tous les mails sont triés !";
+            proButton.interactable = false;
+            spamButton.interactable = false;
+            return;
         }
+
+        mailText.text = mails[currentIndex].content;
     }
 
     public void SortAsPro()
     {
-        CheckMail(false);  // false = non-spam
+        HandleSort(true); // L'utilisateur dit "Pro"
     }
 
     public void SortAsSpam()
     {
-        CheckMail(true);  // true = spam
+        HandleSort(false); // L'utilisateur dit "Spam"
     }
 
-    void CheckMail(bool userSaysSpam)
+    void HandleSort(bool userSaysPro)
     {
-        bool isCorrect = mails[currentIndex].isSpam == userSaysSpam;
-        Debug.Log("Tri correct ? " + isCorrect);
+        if (currentIndex >= mails.Length)
+            return;
 
-        // Passer au mail suivant
-        currentIndex++;
-        if (currentIndex < mails.Length)
-            ShowCurrentMail();
+        bool mailIsPro = mails[currentIndex].isPro;
+
+        if (mailIsPro == userSaysPro)
+        {
+            productivity += correctBonus;
+            Debug.Log("✅ Tri correct !");
+        }
         else
-            Debug.Log("Tous les mails tri�s !");
+        {
+            productivity -= wrongPenalty;
+            Debug.Log("❌ Mauvais tri !");
+        }
+
+        productivity = Mathf.Clamp(productivity, 0f, 100f);
+        productivitySlider.value = productivity / 100f;
+
+        currentIndex++;
+        ShowMail();
     }
 }

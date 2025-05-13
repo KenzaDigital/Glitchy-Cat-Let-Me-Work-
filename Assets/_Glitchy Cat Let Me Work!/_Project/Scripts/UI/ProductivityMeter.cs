@@ -5,6 +5,16 @@ public class ProductivityMeter : MonoBehaviour
 {
     internal float current;
 
+    internal void AddProductivity(float v)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal void ReduceProductivity(float v)
+    {
+        throw new NotImplementedException();
+    }
+
     internal void ReduceWaste(float v)
     {
         throw new NotImplementedException();
