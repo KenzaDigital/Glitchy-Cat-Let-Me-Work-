@@ -1,7 +1,6 @@
-﻿using UnityEngine;
-using TMPro;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
-using System;
 
 public class MailSorterManager : MonoBehaviour
 {
@@ -10,6 +9,8 @@ public class MailSorterManager : MonoBehaviour
     public Button proButton;
     public Button spamButton;
     public Slider productivitySlider;
+    public Canvas CanvasMail;  // Référence au Canvas contenant le mail
+    public Button openMailButton;  // Référence au bouton "Open Mail"
 
     [Header("Données")]
     public MailData[] mails;
@@ -23,10 +24,9 @@ public class MailSorterManager : MonoBehaviour
 
     void Start()
     {
-      
-        
-            Debug.Log("Nombre de mails reçus : " + mails.Length);
-      
+        Debug.Log("Nombre de mails reçus : " + mails.Length);
+        CanvasMail.gameObject.SetActive(false);  // Assure que le canvas est désactivé au début
+        ShowMail();
 
         if (mails.Length == 0)
         {
@@ -34,22 +34,28 @@ public class MailSorterManager : MonoBehaviour
             return;
         }
 
-        ShowMail();
+        // Assigner la fonction du bouton "Open Mail"
+        openMailButton.onClick.AddListener(OpenMail);
     }
-
-  
 
     void ShowMail()
     {
         if (currentIndex >= mails.Length)
         {
-            mailText.text = " Tous les mails sont triés !";
+            mailText.text = "Tous les mails sont triés !";
             proButton.interactable = false;
             spamButton.interactable = false;
             return;
         }
 
         mailText.text = mails[currentIndex].content;
+    }
+
+    // Fonction pour ouvrir le Canvas Mail
+    public void OpenMail()
+    {
+        CanvasMail.gameObject.SetActive(true);  // Activer le canvas pour afficher le mail
+        Debug.Log("Mail ouvert !");
     }
 
     public void SortAsPro()
@@ -85,5 +91,14 @@ public class MailSorterManager : MonoBehaviour
 
         currentIndex++;
         ShowMail();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            CanvasMail.gameObject.SetActive(false);  // Désactiver le canvas si l'utilisateur appuie sur Échap
+            Debug.Log("Mail fermé !");
+        }
     }
 }
