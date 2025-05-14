@@ -5,9 +5,9 @@ using System.Collections;
 public class VirusChatManager : MonoBehaviour
 {
     [Header("Interruption")]
-    public GameObject blackoutPanel; // Correction du nom : "blakoutPanel" → "blackoutPanel"
+    public GameObject blackoutPanel;
     public GameObject popupPanel;
-   
+
     public float timeBetweenInterruptions = 15f;
     public float sabotageDuration = 5f;
 
@@ -17,7 +17,6 @@ public class VirusChatManager : MonoBehaviour
 
     private float interruptionTimer = 0f;
 
-   
     public Button proButton;
     public Button spamButton;
 
@@ -106,5 +105,15 @@ public class VirusChatManager : MonoBehaviour
     {
         yield return new WaitForSeconds(calmDuration);
         isCalm = false;
+    }
+
+    // ✅ Fonction appelée par le bouton "Fermer"
+    public void CloseButtonSpam()
+    {
+        if (popupPanel != null)
+        {
+            popupPanel.SetActive(false);
+            Debug.Log("Popup fermé par le bouton !");
+        }
     }
 }
