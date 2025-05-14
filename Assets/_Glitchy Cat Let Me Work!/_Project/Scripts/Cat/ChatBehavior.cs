@@ -1,23 +1,22 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
 
 public class ChatBehavior : MonoBehaviour
 {
-    public float walkSpeed = 100f; // UI = pixels
-    public RectTransform[] walkPoints; // Points de destination UI
+    public float walkSpeed = 2f; // Unités Unity (meters/second)
+    public Transform[] walkPoints; // Waypoints dans la scène
     public Animator animator;
-    public Image chatImage;
-    public float walkInterval = 10f; // Pause entre les déplacements
+    public SpriteRenderer chatImage;
+    public float walkInterval = 10f; // Pause entre déplacements
 
     private bool isWalking = false;
-    private RectTransform chatRectTransform;
+    private Transform chatTransform;
 
     private void Start()
     {
         if (animator == null) animator = GetComponent<Animator>();
-        if (chatImage == null) chatImage = GetComponent<Image>();
-        chatRectTransform = chatImage.rectTransform;
+        if (chatImage == null) chatImage = GetComponent<SpriteRenderer>();
+        chatTransform = transform;
 
         StartCoroutine(WalkLoop());
     }
@@ -46,33 +45,29 @@ public class ChatBehavior : MonoBehaviour
     {
         isWalking = true;
 
-        // Choisir une destination aléatoire
-        RectTransform target = walkPoints[Random.Range(0, walkPoints.Length)];
-        Vector2 start = chatRectTransform.anchoredPosition;
-        Vector2 end = target.anchoredPosition;
+        Transform target = walkPoints[Random.Range(0, walkPoints.Length)];
+        Vector3 start = chatTransform.position;
+        Vector3 end = target.position;
 
-        // Inverser l'image selon la direction
-        Vector3 scale = chatRectTransform.localScale;
-        scale.x = end.x < start.x ? -1 : 1;
-        chatRectTransform.localScale = scale;
+        // Inverser sprite selon la direction
+        // Inverser le sprite avec flipX
+        chatImage.flipX = end.x < start.x;
 
-        // Activer animation de marche via le booléen
+
         animator.SetBool("isWalking", true);
         Debug.Log("Chat commence à marcher.");
 
-        // Mouvement vers le point
-        while (Vector2.Distance(chatRectTransform.anchoredPosition, end) > 5f)
+        while (Vector3.Distance(chatTransform.position, end) > 0.1f)
         {
-            chatRectTransform.anchoredPosition = Vector2.MoveTowards(
-                chatRectTransform.anchoredPosition,
+            chatTransform.position = Vector3.MoveTowards(
+                chatTransform.position,
                 end,
                 walkSpeed * Time.deltaTime
             );
             yield return null;
         }
 
-        // Arrivé → animation Idle
-        chatRectTransform.anchoredPosition = end;
+        chatTransform.position = end;
         animator.SetBool("isWalking", false);
         Debug.Log("Chat est arrivé et devient idle.");
 
@@ -83,7 +78,6 @@ public class ChatBehavior : MonoBehaviour
     {
         if (!isWalking)
         {
-            animator.SetBool("isWalking", false);
             Debug.Log("Chat : Miaou !");
         }
     }
@@ -92,7 +86,6 @@ public class ChatBehavior : MonoBehaviour
     {
         if (!isWalking)
         {
-            animator.SetBool("isWalking", false);
             Debug.Log("Chat : Sabotage !");
         }
     }
