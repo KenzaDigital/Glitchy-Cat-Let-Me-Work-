@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f749a571aabc0884e86b31d09090c2ae, type: 3}
   m_Name: MailSpam3
   m_EditorClassIdentifier: 
-  content: 
+  content: "Il ya des extraterreste et la guerre va \xE9clater envoie 10k de thune
+    pour te sauver "
   isPro: 0

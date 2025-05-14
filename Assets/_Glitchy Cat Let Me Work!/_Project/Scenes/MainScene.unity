@@ -926,8 +926,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: faf6dc223b682e741b2087cbf73ffbb8, type: 2}
   - {fileID: 11400000, guid: 329d0108b69e9194681c4c99760705a8, type: 2}
   - {fileID: 11400000, guid: e4468ce5faade7f49b5326c854994317, type: 2}
-  productivity: 200
-  correctBonus: 2
+  productivity: 300
+  correctBonus: 15
   wrongPenalty: 30
 --- !u!4 &355179660
 Transform:
@@ -1680,7 +1680,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 107, y: -110}
+  m_AnchoredPosition: {x: 93.1, y: -112}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &635449779
@@ -2391,7 +2391,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 6
   m_TargetDisplay: 0
 --- !u!1 &841041910
 GameObject:
@@ -2641,7 +2641,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -75, y: -112}
+  m_AnchoredPosition: {x: -89.8, y: -112}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &898683919
@@ -2905,7 +2905,7 @@ GameObject:
   - component: {fileID: 968103666}
   - component: {fileID: 968103665}
   m_Layer: 5
-  m_Name: POPup 2 (2)
+  m_Name: POPup 2 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3525,7 +3525,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 7.4, y: 210.8}
+  m_AnchoredPosition: {x: 233, y: 197}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1106911189
@@ -3628,7 +3628,7 @@ GameObject:
   - component: {fileID: 1107431159}
   - component: {fileID: 1107431158}
   m_Layer: 5
-  m_Name: POPup 2
+  m_Name: POPup 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3725,7 +3725,7 @@ RectTransform:
   m_Father: {fileID: 1810531805}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3937,7 +3937,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 14.8, y: 50}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1306606268
@@ -3969,8 +3969,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3987,10 +3987,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 44.75
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -4199,7 +4199,7 @@ RectTransform:
   m_GameObject: {fileID: 1354842728}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9875, y: 1.0375, z: 1}
+  m_LocalScale: {x: 0.9787705, y: 1.0026203, z: 0.99116}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1734570906}
@@ -4207,7 +4207,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 80, y: 228}
+  m_AnchoredPosition: {x: 270, y: 206}
   m_SizeDelta: {x: 1230, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1354842730
@@ -4957,7 +4957,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 6
   m_TargetDisplay: 0
 --- !u!224 &1498209365
 RectTransform:
@@ -5468,7 +5468,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: :(    .... ...   Something went  wrong  ......
+  m_text: :(      c'est un fatal Blue Screen ton patron va te virer :o
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5559,7 +5559,7 @@ GameObject:
   - component: {fileID: 1753116319}
   - component: {fileID: 1753116318}
   m_Layer: 5
-  m_Name: POPup 2 (1)
+  m_Name: 'POPup 2 '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5650,7 +5650,7 @@ RectTransform:
   m_GameObject: {fileID: 1764292366}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.9571041, y: 0.95, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1306606267}
@@ -5661,7 +5661,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 134, y: 231}
+  m_AnchoredPosition: {x: 245, y: 200}
   m_SizeDelta: {x: 400, y: -580}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1764292368
@@ -5677,15 +5677,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 69791120291402465, guid: 90cf2c6015e2e9c418c37b4ba0f26977, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -5791,19 +5791,19 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1780291851}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7568471, y: 1.09168, z: 0.88972294}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1030095764}
-  m_Father: {fileID: 1966286949}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 626.73303, y: 183.64401}
-  m_SizeDelta: {x: 1920, y: 1080}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
 --- !u!1 &1797519774
 GameObject:
   m_ObjectHideFlags: 0
@@ -6110,7 +6110,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1886167091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6521,7 +6521,6 @@ RectTransform:
   - {fileID: 1107431157}
   - {fileID: 1753116317}
   - {fileID: 968103664}
-  - {fileID: 1780291855}
   m_Father: {fileID: 829847489}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -7090,9 +7089,10 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
-  - {fileID: 1886167094}
-  - {fileID: 4119056}
   - {fileID: 982809859}
+  - {fileID: 1886167094}
+  - {fileID: 1780291855}
+  - {fileID: 4119056}
   - {fileID: 946256259}
   - {fileID: 609120232}
   - {fileID: 1587411885}
