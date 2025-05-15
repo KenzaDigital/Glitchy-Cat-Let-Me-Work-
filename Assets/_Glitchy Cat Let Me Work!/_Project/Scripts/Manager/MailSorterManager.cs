@@ -170,9 +170,10 @@ public class MailSorterManager : MonoBehaviour
     IEnumerator NextMailDelay()
     {
         yield return new WaitForSeconds(0.3f);
-        CanvasMail.gameObject.SetActive(false);
-        openMailButton.interactable = true;
+        
+        openMailButton.interactable = false; // On désactive le bouton ouvrir mail pour éviter doublons
         ShowMail();
+        StartTimer();
     }
 
     void GameOver()
@@ -191,6 +192,7 @@ public class MailSorterManager : MonoBehaviour
         CanvasMail.gameObject.SetActive(true);
         ResetCanvasMail();
         openMailButton.interactable = false;
+        MiniGameManager.Instance.SetCurrentMiniGame(MiniGameType.TriDeMail);
         Debug.Log("Mail ouvert !");
         StartTimer();
     }

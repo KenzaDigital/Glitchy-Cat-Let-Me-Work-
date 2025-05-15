@@ -40,6 +40,9 @@ public class VirusChatManager : MonoBehaviour
 
     void Update()
     {
+        if (MiniGameManager.Instance.currentMiniGame != MiniGameType.TriDeMail)
+            return;
+
         if (isCalm || isInterruptionActive)
             return;
 
@@ -63,6 +66,9 @@ public class VirusChatManager : MonoBehaviour
 
     public void TriggerRandomInterruption()
     {
+        if (MiniGameManager.Instance.currentMiniGame != MiniGameType.TriDeMail)
+            return;
+
         // Si blackout actif => on ne déclenche rien d'autre
         if (blackoutPanel.activeSelf)
             return;
@@ -191,8 +197,8 @@ public class VirusChatManager : MonoBehaviour
 
         yield return new WaitForSeconds(sabotageDuration);
 
-        // Remet les boutons à leur place initiale (ajuste selon ton besoin)
-        // Par exemple, stocke la position initiale dans Start() pour remettre ici
+        // Remet les boutons à leur place initiale 
+        
 
         isInterruptionActive = false;
     }
@@ -235,8 +241,7 @@ public class VirusChatManager : MonoBehaviour
     IEnumerator CalmDuration()
     {
         Debug.Log("Le chat est calme temporairement");
-        yield return new WaitForSeconds(15f); // Ou ta variable calmDuration
-        isCalm = false;
+        yield return new WaitForSeconds(15f); // 
         Debug.Log("Le chat recommence à embêter !");
     }
 }
