@@ -1,15 +1,11 @@
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 using UnityEngine.UIElements;
 
 public class TaskItem : MonoBehaviour
 {
-    [Header("UI Elements")]
     public UnityEngine.UI.Toggle toggle;
     public Label taskLabel;
 
-    [Header("Tâche")]
     public string taskText;
     public int productivityGain = 10;
 
@@ -29,22 +25,29 @@ public class TaskItem : MonoBehaviour
         if (isOn && !alreadyCompleted)
         {
             alreadyCompleted = true;
-
-            taskLabel.text = $"<s>{taskText}</s>";
-            
-
-           
+            if (taskLabel != null)
+                taskLabel.text = $"<s>{taskText}</s>"; // barré avec balise <s>
             ProductivityManager.Instance?.AddProductivity(productivityGain);
         }
         else if (!isOn && alreadyCompleted)
         {
             alreadyCompleted = false;
-
-            
-            taskLabel.text = taskText;
-           
-           
+            if (taskLabel != null)
+                taskLabel.text = taskText;
             ProductivityManager.Instance?.RemoveProductivity(productivityGain);
         }
+    }
+
+    public void CompleteTask()
+    {
+        alreadyCompleted = true;
+
+        if (taskLabel != null)
+            taskLabel.text = $"<s>{taskText}</s>";
+    }
+
+    public bool IsCompleted()
+    {
+        return alreadyCompleted;
     }
 }
