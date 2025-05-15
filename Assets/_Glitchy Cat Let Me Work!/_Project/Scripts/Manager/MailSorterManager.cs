@@ -11,6 +11,7 @@ public class MailSorterManager : MonoBehaviour
     public Slider productivitySlider;
     public Canvas CanvasMail;  // Référence au Canvas contenant le mail
     public Button openMailButton;  // Référence au bouton "Open Mail"
+   
 
     [Header("Données")]
     public MailData[] mails;
@@ -78,12 +79,12 @@ public class MailSorterManager : MonoBehaviour
         if (mailIsPro == userSaysPro)
         {
             productivity += correctBonus;
-            Debug.Log("✅ Tri correct !");
+            Debug.Log(" Tri correct !");
         }
         else
         {
             productivity -= wrongPenalty;
-            Debug.Log("❌ Mauvais tri !");
+            Debug.Log(" Mauvais tri !");
         }
 
         productivity = Mathf.Clamp(productivity, 0f, 100f);
