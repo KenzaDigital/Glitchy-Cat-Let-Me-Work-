@@ -21,14 +21,13 @@ public class ToDoListManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Marque la tâche à l’index donné comme complétée.
-    /// </summary>
     public void MarkTaskCompletedByName(string taskName)
     {
+        Debug.Log("🔍 Recherche de la tâche : " + taskName);
         foreach (var task in tasks)
         {
-            if (task.taskText == taskName)
+            Debug.Log("➡️ Tâche dans la liste : " + task.taskText);
+            if (task.taskText.Trim().ToLower() == taskName.Trim().ToLower())
             {
                 task.CompleteTask();
                 Debug.Log($"✅ Tâche complétée : {taskName}");

@@ -33,16 +33,14 @@ public class MailSorterManager : MonoBehaviour
     void Start()
     {
         lives = maxLives;
-        UpdateLivesUI();
+        livesText.text = "Vies : " + lives;
 
         CanvasMail.gameObject.SetActive(false);
-        feedbackText.gameObject.SetActive(false);
-        timerText.gameObject.SetActive(false);
+        ResetCanvasMail();
 
-        if (mails == null || mails.Length == 0)
+        if (mails.Length == 0)
         {
             Debug.LogError("Aucun mail assigné !");
-            openMailButton.interactable = false;
             return;
         }
 
@@ -53,9 +51,10 @@ public class MailSorterManager : MonoBehaviour
         spamButton.onClick.AddListener(() => SortMail(false));
     }
 
-    void UpdateLivesUI()
+    void ResetCanvasMail()
     {
-        livesText.text = "Vies : " + lives;
+        feedbackText.gameObject.SetActive(false);
+        timerText.gameObject.SetActive(false);
     }
 
     void ShowMail()
@@ -66,24 +65,17 @@ public class MailSorterManager : MonoBehaviour
             proButton.interactable = false;
             spamButton.interactable = false;
             timerText.gameObject.SetActive(false);
-            feedbackText.gameObject.SetActive(false);
             CanvasMail.gameObject.SetActive(false);
             openMailButton.interactable = false;
 
+            Debug.Log("🟢 Tous les mails sont finis. Tentative de marquer la tâche comme complétée...");
             todoListManager?.MarkTaskCompletedByName("Trier les mails");
-
-            mailActive = false;
-            if (timerCoroutine != null)
-                StopCoroutine(timerCoroutine);
             return;
         }
 
         mailText.text = mails[currentIndex].content;
         proButton.interactable = true;
         spamButton.interactable = true;
-
-        feedbackText.gameObject.SetActive(false);  // On cache le feedback à chaque nouveau mail
-        timerText.gameObject.SetActive(false);     // On cache le timer avant d’ouvrir le mail
     }
 
     void StartTimer()
@@ -97,7 +89,8 @@ public class MailSorterManager : MonoBehaviour
         timerCoroutine = StartCoroutine(TimerCountdown());
 
         timerText.gameObject.SetActive(true);
-        timerText.text = timer.ToString("0");
+        feedbackText.gameObject.SetActive(true);
+        timerText.text = " " + timeToAnswer.ToString("0");
     }
 
     IEnumerator TimerCountdown()
@@ -105,7 +98,7 @@ public class MailSorterManager : MonoBehaviour
         while (timer > 0)
         {
             timer -= Time.deltaTime;
-            timerText.text = Mathf.CeilToInt(timer).ToString();
+            timerText.text = " " + Mathf.CeilToInt(timer).ToString();
             yield return null;
         }
 
@@ -123,9 +116,7 @@ public class MailSorterManager : MonoBehaviour
         if (!mailActive) return;
 
         mailActive = false;
-        if (timerCoroutine != null)
-            StopCoroutine(timerCoroutine);
-
+        if (timerCoroutine != null) StopCoroutine(timerCoroutine);
         timerText.gameObject.SetActive(false);
 
         bool mailIsPro = mails[currentIndex].isPro;
@@ -133,47 +124,55 @@ public class MailSorterManager : MonoBehaviour
 
         if (isCorrect)
         {
-            StartCoroutine(ShowFeedbackThenNextMail("Yeah !", Color.green));
+            StartCoroutine(ShowFeedback("Yeah !", Color.green));
             ProductivityManager.Instance?.AddProductivity(10);
         }
         else
         {
-            StartCoroutine(ShowFeedbackThenNextMail("Bouuuuh...", Color.red, isWrong: true));
-        }
-    }
-
-    IEnumerator ShowFeedbackThenNextMail(string message, Color color, bool isWrong = false)
-    {
-        feedbackText.text = message;
-        feedbackText.color = color;
-        feedbackText.gameObject.SetActive(true);
-
-        yield return new WaitForSeconds(1.5f);
-
-        feedbackText.gameObject.SetActive(false);
-
-        if (isWrong)
-        {
-            lives--;
-            UpdateLivesUI();
-
-            ProductivityManager.Instance?.RemoveProductivity(10);
-
-            if (lives <= 0)
-            {
-                GameOver();
-                yield break;
-            }
+            OnWrongAnswer();
+            return;
         }
 
         currentIndex++;
-        ShowMail();
-        OpenMail();  // relance le canvas + timer
+        StartCoroutine(NextMailDelay());
     }
 
     void OnWrongAnswer()
     {
-        // Ne plus rien faire ici, on utilise le coroutine ShowFeedbackThenNextMail avec isWrong = true
+        mailActive = false;
+        if (timerCoroutine != null) StopCoroutine(timerCoroutine);
+        timerText.gameObject.SetActive(false);
+
+        lives--;
+        livesText.text = "Vies : " + lives;
+        StartCoroutine(ShowFeedback("Bouuuuh...", Color.red));
+        ProductivityManager.Instance?.RemoveProductivity(10);
+
+        if (lives <= 0)
+        {
+            GameOver();
+        }
+        else
+        {
+            currentIndex++;
+            StartCoroutine(NextMailDelay());
+        }
+    }
+
+    IEnumerator ShowFeedback(string message, Color color)
+    {
+        feedbackText.text = message;
+        feedbackText.color = color;
+        yield return new WaitForSeconds(1.5f);
+        feedbackText.text = "";
+    }
+
+    IEnumerator NextMailDelay()
+    {
+        yield return new WaitForSeconds(0.3f);
+        CanvasMail.gameObject.SetActive(false);
+        openMailButton.interactable = true;
+        ShowMail();
     }
 
     void GameOver()
@@ -183,24 +182,16 @@ public class MailSorterManager : MonoBehaviour
         proButton.interactable = false;
         spamButton.interactable = false;
         timerText.gameObject.SetActive(false);
-        feedbackText.gameObject.SetActive(false);
         CanvasMail.gameObject.SetActive(false);
         openMailButton.interactable = false;
-        mailActive = false;
-
-        if (timerCoroutine != null)
-            StopCoroutine(timerCoroutine);
     }
 
     public void OpenMail()
     {
-        if (currentIndex >= mails.Length || lives <= 0) return;
-
         CanvasMail.gameObject.SetActive(true);
-        feedbackText.gameObject.SetActive(false);
-        timerText.gameObject.SetActive(false);
+        ResetCanvasMail();
         openMailButton.interactable = false;
-
+        Debug.Log("Mail ouvert !");
         StartTimer();
     }
 
@@ -212,11 +203,6 @@ public class MailSorterManager : MonoBehaviour
             timerText.gameObject.SetActive(false);
             feedbackText.gameObject.SetActive(false);
             openMailButton.interactable = true;
-            mailActive = false;
-
-            if (timerCoroutine != null)
-                StopCoroutine(timerCoroutine);
-
             Debug.Log("Mail fermé !");
         }
     }
