@@ -55,7 +55,7 @@ public class ChatBehavior : MonoBehaviour
 
 
         animator.SetBool("isWalking", true);
-        Debug.Log("Chat commence à marcher.");
+       // Debug.Log("Chat commence à marcher.");
 
         while (Vector3.Distance(chatTransform.position, end) > 0.1f)
         {
@@ -69,7 +69,7 @@ public class ChatBehavior : MonoBehaviour
 
         chatTransform.position = end;
         animator.SetBool("isWalking", false);
-        Debug.Log("Chat est arrivé et devient idle.");
+       // Debug.Log("Chat est arrivé et devient idle.");
 
         isWalking = false;
     }

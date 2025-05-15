@@ -1,12 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.UIElements;
 
 public class TaskItem : MonoBehaviour
 {
     [Header("UI Elements")]
-    public Toggle toggle;
-    public TextMeshProUGUI taskLabel;
+    public UnityEngine.UI.Toggle toggle;
+    public Label taskLabel;
 
     [Header("Tâche")]
     public string taskText;
