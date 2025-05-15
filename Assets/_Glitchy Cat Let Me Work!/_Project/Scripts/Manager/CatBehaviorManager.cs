@@ -41,7 +41,18 @@ public class VirusChatManager : MonoBehaviour
     void Update()
     {
         if (MiniGameManager.Instance.currentMiniGame != MiniGameType.TriDeMail)
+        {
+            // Désactive tout si mini-jeu non actif
+            blackoutPanel.SetActive(false);
+            popupPanel.SetActive(false);
+
+            foreach (var popup in popupWindows)
+                popup.SetActive(false);
+
+            isInterruptionActive = false;  // Assure que l'interruption est désactivée
+
             return;
+        }
 
         if (isCalm || isInterruptionActive)
             return;
@@ -49,7 +60,6 @@ public class VirusChatManager : MonoBehaviour
         interruptionTimer += Time.deltaTime;
         popupDifficultyTimer += Time.deltaTime;
 
-        // Augmente max popups progressif
         if (popupDifficultyTimer >= popupDifficultyIncreaseInterval)
         {
             popupDifficultyTimer = 0f;
@@ -63,6 +73,7 @@ public class VirusChatManager : MonoBehaviour
             TriggerRandomInterruption();
         }
     }
+
 
     public void TriggerRandomInterruption()
     {

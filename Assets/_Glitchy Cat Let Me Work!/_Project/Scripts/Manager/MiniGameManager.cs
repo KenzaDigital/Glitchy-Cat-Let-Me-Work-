@@ -2,9 +2,12 @@ using UnityEngine;
 
 public enum MiniGameType
 {
+    
+    None,
     TriDeMail,
     FichierCrush,
     AuRapport,
+ 
     
    
     // Add more mini-game types as needed

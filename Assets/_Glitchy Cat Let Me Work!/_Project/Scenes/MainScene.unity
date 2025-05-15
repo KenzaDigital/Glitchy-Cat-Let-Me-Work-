@@ -797,6 +797,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1344720323}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &490853729
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 490853730}
+  - component: {fileID: 490853731}
+  m_Layer: 0
+  m_Name: MiniGamesManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &490853730
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490853729}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1062.6016, y: -614.07874, z: 8.505569}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1344720323}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &490853731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490853729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f4f76edf2d802346a3b3ae486bfb33e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentMiniGame: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1845,11 +1890,11 @@ MonoBehaviour:
   - {fileID: 968103663}
   proButton: {fileID: 898683919}
   spamButton: {fileID: 635449779}
-  timeBetweenInterruptions: 5
-  sabotageDuration: 3
-  maxPopupsAtOnceStart: 1
-  maxPopupsAtOnceMax: 3
-  popupDifficultyIncreaseInterval: 60
+  timeBetweenInterruptions: 1.8
+  sabotageDuration: 2.55
+  maxPopupsAtOnceStart: 2
+  maxPopupsAtOnceMax: 6
+  popupDifficultyIncreaseInterval: 101.7
   isCalm: 0
 --- !u!1 &787341736
 GameObject:
@@ -3374,6 +3419,7 @@ Transform:
   - {fileID: 782805465}
   - {fileID: 1734088476}
   - {fileID: 290985512}
+  - {fileID: 490853730}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1354842728
@@ -3891,7 +3937,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1498209362
 MonoBehaviour:
   m_ObjectHideFlags: 0

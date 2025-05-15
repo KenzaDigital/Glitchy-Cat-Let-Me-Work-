@@ -70,6 +70,9 @@ public class MailSorterManager : MonoBehaviour
 
             Debug.Log("🟢 Tous les mails sont finis. Tentative de marquer la tâche comme complétée...");
             todoListManager?.MarkTaskCompletedByName("Trier les mails");
+
+            MiniGameManager.Instance.SetCurrentMiniGame(MiniGameType.None);
+
             return;
         }
 
@@ -170,10 +173,19 @@ public class MailSorterManager : MonoBehaviour
     IEnumerator NextMailDelay()
     {
         yield return new WaitForSeconds(0.3f);
-        
+
         openMailButton.interactable = false; // On désactive le bouton ouvrir mail pour éviter doublons
         ShowMail();
-        StartTimer();
+
+        // On ne relance le timer que s’il reste des mails
+        if (currentIndex < mails.Length)
+        {
+            StartTimer();
+        }
+        else
+        {
+            MiniGameManager.Instance.SetCurrentMiniGame(MiniGameType.None);
+        }
     }
 
     void GameOver()
@@ -185,6 +197,8 @@ public class MailSorterManager : MonoBehaviour
         timerText.gameObject.SetActive(false);
         CanvasMail.gameObject.SetActive(false);
         openMailButton.interactable = false;
+
+        MiniGameManager.Instance.SetCurrentMiniGame(MiniGameType.None);
     }
 
     public void OpenMail()
@@ -206,6 +220,8 @@ public class MailSorterManager : MonoBehaviour
             feedbackText.gameObject.SetActive(false);
             openMailButton.interactable = true;
             Debug.Log("Mail fermé !");
+
+            MiniGameManager.Instance.SetCurrentMiniGame(MiniGameType.None);
         }
     }
 }
