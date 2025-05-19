@@ -5,11 +5,11 @@ public class FichierPiece : MonoBehaviour
     public int x, y;
     private DossierBoard board;
 
-    public void Init(int x, int y, DossierBoard board)
+    public void Init(int _x, int _y, DossierBoard _board)
     {
-        this.x = x;
-        this.y = y;
-        this.board = board;
+        x = _x;
+        y = _y;
+        board = _board;
     }
 
     void OnMouseDown()

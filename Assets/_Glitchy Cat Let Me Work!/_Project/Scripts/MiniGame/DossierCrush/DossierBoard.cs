@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,39 +7,53 @@ public class DossierBoard : MonoBehaviour
     public int width = 8;
     public int height = 8;
     public float tileSize = 2f;
-
     public GameObject[] piecePrefabs;
 
     private FichierPiece[,] pieces;
     private FichierPiece selectedPiece;
+    private bool isSwapping = false;
+    private bool boardReady = false;
 
     void Start()
     {
         pieces = new FichierPiece[width, height];
-        InitBoard();
-        StartCoroutine(CheckMatchesAfterInit());
+        InitBoardWithoutMatches();
     }
 
-    void InitBoard()
+    void InitBoardWithoutMatches()
     {
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
             {
-                SpawnPiece(x, y);
+                do
+                {
+                    if (pieces[x, y] != null)
+                        Destroy(pieces[x, y].gameObject);
+                    SpawnPiece(x, y);
+                } while (HasMatchAt(x, y));
             }
         }
+
+        boardReady = true;
     }
 
     void SpawnPiece(int x, int y)
     {
         Vector2 spawnPos = new Vector2(x * tileSize, y * tileSize);
-        GameObject obj = Instantiate(GetRandomPiece(), spawnPos, Quaternion.identity);
-        obj.transform.parent = transform;
+        GameObject pieceObj = Instantiate(GetRandomPiece(), spawnPos, Quaternion.identity);
+        pieceObj.transform.parent = this.transform;
 
-        FichierPiece piece = obj.GetComponent<FichierPiece>();
-        piece.Init(x, y, this);
-        pieces[x, y] = piece;
+        FichierPiece fichier = pieceObj.GetComponent<FichierPiece>();
+        fichier.Init(x, y, this);
+
+        SpriteRenderer sr = pieceObj.GetComponent<SpriteRenderer>();
+        if (sr != null)
+        {
+            sr.sortingOrder = height - y;
+        }
+
+        pieces[x, y] = fichier;
     }
 
     GameObject GetRandomPiece()
@@ -50,6 +64,8 @@ public class DossierBoard : MonoBehaviour
 
     public void SelectPiece(FichierPiece piece)
     {
+        if (!boardReady || isSwapping) return;
+
         if (selectedPiece == null)
         {
             selectedPiece = piece;
@@ -59,6 +75,7 @@ public class DossierBoard : MonoBehaviour
             if (AreAdjacent(selectedPiece, piece))
             {
                 StartCoroutine(SwapAndCheck(selectedPiece, piece));
+                selectedPiece = null;
             }
             else
             {
@@ -75,48 +92,70 @@ public class DossierBoard : MonoBehaviour
 
     IEnumerator SwapAndCheck(FichierPiece a, FichierPiece b)
     {
-        SwapPieces(a, b);
+        isSwapping = true;
+        boardReady = false;
 
-        yield return new WaitForSeconds(0.2f);
+        yield return StartCoroutine(AnimateSwap(a, b));
+        SwapInGrid(a, b);
 
-        if (GetMatches().Count > 0)
+        yield return new WaitForSeconds(0.1f);
+
+        List<FichierPiece> matches = GetMatches();
+
+        if (matches.Count > 0)
         {
-            ClearMatches();
+            ClearMatches(matches);
         }
         else
         {
-            // Pas de match, on annule le swap
-            SwapPieces(a, b);
+            yield return StartCoroutine(AnimateSwap(a, b));
+            SwapInGrid(a, b);
         }
 
-        selectedPiece = null;
+        yield return new WaitForSeconds(0.1f);
+
+        isSwapping = false;
+        boardReady = true;
     }
 
-    void SwapPieces(FichierPiece a, FichierPiece b)
+    IEnumerator AnimateSwap(FichierPiece a, FichierPiece b)
     {
-        // Swap dans la grille
+        Vector3 posA = a.transform.position;
+        Vector3 posB = b.transform.position;
+        float duration = 0.2f;
+        float time = 0f;
+
+        while (time < duration)
+        {
+            a.transform.position = Vector3.Lerp(posA, posB, time / duration);
+            b.transform.position = Vector3.Lerp(posB, posA, time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        a.transform.position = posB;
+        b.transform.position = posA;
+    }
+
+    void SwapInGrid(FichierPiece a, FichierPiece b)
+    {
         pieces[a.x, a.y] = b;
         pieces[b.x, b.y] = a;
 
-        // Swap les coordonnées
         int tempX = a.x;
         int tempY = a.y;
+
         a.x = b.x;
         a.y = b.y;
+
         b.x = tempX;
         b.y = tempY;
-
-        // Déplace visuellement
-        Vector3 tempPos = a.transform.position;
-        a.transform.position = b.transform.position;
-        b.transform.position = tempPos;
     }
 
     List<FichierPiece> GetMatches()
     {
         List<FichierPiece> matches = new List<FichierPiece>();
 
-        // Horizontaux
         for (int y = 0; y < height; y++)
         {
             for (int x = 0; x < width - 2; x++)
@@ -135,7 +174,6 @@ public class DossierBoard : MonoBehaviour
             }
         }
 
-        // Verticaux
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height - 2; y++)
@@ -157,20 +195,15 @@ public class DossierBoard : MonoBehaviour
         return matches;
     }
 
-    void ClearMatches()
+    void ClearMatches(List<FichierPiece> matches)
     {
-        List<FichierPiece> matches = GetMatches();
-
-        foreach (FichierPiece piece in matches)
+        foreach (var piece in matches)
         {
             pieces[piece.x, piece.y] = null;
             Destroy(piece.gameObject);
         }
 
-        if (matches.Count > 0)
-        {
-            StartCoroutine(FillBoard());
-        }
+        StartCoroutine(FillBoard());
     }
 
     IEnumerator FillBoard()
@@ -183,22 +216,22 @@ public class DossierBoard : MonoBehaviour
             {
                 if (pieces[x, y] != null)
                 {
-                    int fall = 0;
+                    int fallDistance = 0;
 
                     for (int i = y - 1; i >= 0 && pieces[x, i] == null; i--)
                     {
-                        fall++;
+                        fallDistance++;
                     }
 
-                    if (fall > 0)
+                    if (fallDistance > 0)
                     {
                         FichierPiece piece = pieces[x, y];
+                        pieces[x, y - fallDistance] = piece;
                         pieces[x, y] = null;
-                        pieces[x, y - fall] = piece;
-                        piece.y -= fall;
+                        piece.y -= fallDistance;
 
-                        Vector3 targetPos = new Vector3(x * tileSize, (y - fall) * tileSize, 0);
-                        StartCoroutine(MovePiece(piece, targetPos, 0.15f));
+                        Vector3 newPos = new Vector3(x * tileSize, piece.y * tileSize, 0);
+                        StartCoroutine(MovePiece(piece, newPos, 0.15f));
                     }
                 }
             }
@@ -206,10 +239,7 @@ public class DossierBoard : MonoBehaviour
 
         yield return new WaitForSeconds(0.3f);
 
-        yield return StartCoroutine(RefillBoard());
-        yield return new WaitForSeconds(0.2f);
-
-        ClearMatches();
+        StartCoroutine(RefillBoard());
     }
 
     IEnumerator RefillBoard()
@@ -224,6 +254,14 @@ public class DossierBoard : MonoBehaviour
                     yield return new WaitForSeconds(0.05f);
                 }
             }
+        }
+
+        yield return new WaitForSeconds(0.3f);
+
+        List<FichierPiece> newMatches = GetMatches();
+        if (newMatches.Count > 0)
+        {
+            ClearMatches(newMatches);
         }
     }
 
@@ -242,9 +280,21 @@ public class DossierBoard : MonoBehaviour
         piece.transform.position = target;
     }
 
-    IEnumerator CheckMatchesAfterInit()
+    bool HasMatchAt(int x, int y)
     {
-        yield return new WaitForSeconds(0.5f);
-        ClearMatches();
+        FichierPiece current = pieces[x, y];
+        if (current == null) return false;
+
+        if (x >= 2 && pieces[x - 1, y] != null && pieces[x - 2, y] != null &&
+            pieces[x - 1, y].tag == current.tag &&
+            pieces[x - 2, y].tag == current.tag)
+            return true;
+
+        if (y >= 2 && pieces[x, y - 1] != null && pieces[x, y - 2] != null &&
+            pieces[x, y - 1].tag == current.tag &&
+            pieces[x, y - 2].tag == current.tag)
+            return true;
+
+        return false;
     }
 }
