@@ -732,7 +732,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tasks:
   - {fileID: 613620568}
-  - {fileID: 0}
+  - {fileID: 651155745}
   - {fileID: 1638917285}
 --- !u!1 &355179658
 GameObject:
@@ -797,6 +797,64 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1344720323}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &482891236
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 482891237}
+  - component: {fileID: 482891238}
+  m_Layer: 0
+  m_Name: PopUp&MailManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &482891237
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 482891236}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -354.86658, y: 204.6239, z: 8.519087}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1344720323}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &482891238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 482891236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50f54bdbba346264c820e0606dbfabd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blackoutPanel: {fileID: 1354842728}
+  popupPanel: {fileID: 1966286948}
+  popupWindows:
+  - {fileID: 1107431156}
+  - {fileID: 1753116316}
+  - {fileID: 968103663}
+  proButton: {fileID: 898683919}
+  spamButton: {fileID: 635449779}
+  timeBetweenInterruptions: 1.8
+  sabotageDuration: 2.55
+  maxPopupsAtOnceStart: 2
+  maxPopupsAtOnceMax: 6
+  popupDifficultyIncreaseInterval: 101.7
+  isCalm: 0
 --- !u!1 &490853729
 GameObject:
   m_ObjectHideFlags: 0
@@ -1879,23 +1937,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 782805464}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f54bdbba346264c820e0606dbfabd1, type: 3}
+  m_Script: {fileID: 11500000, guid: b8030c3bbb1341a4383f9b6f52f3fdef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blackoutPanel: {fileID: 1354842728}
-  popupPanel: {fileID: 1966286948}
-  popupWindows:
-  - {fileID: 1107431156}
-  - {fileID: 1753116316}
-  - {fileID: 968103663}
-  proButton: {fileID: 898683919}
-  spamButton: {fileID: 635449779}
-  timeBetweenInterruptions: 1.8
-  sabotageDuration: 2.55
-  maxPopupsAtOnceStart: 2
-  maxPopupsAtOnceMax: 6
-  popupDifficultyIncreaseInterval: 101.7
-  isCalm: 0
 --- !u!1 &787341736
 GameObject:
   m_ObjectHideFlags: 0
@@ -2458,6 +2502,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 898683917}
   m_CullTransparentMesh: 1
+--- !u!1 &930488889
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 930488890}
+  - component: {fileID: 930488891}
+  m_Layer: 0
+  m_Name: MenuManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &930488890
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930488889}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -354.86658, y: 204.6239, z: 8.519087}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1344720323}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &930488891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930488889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66ae1cbecbbf1fa4fa8eb7037bef7702, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &946256256
 GameObject:
   m_ObjectHideFlags: 0
@@ -3420,6 +3508,8 @@ Transform:
   - {fileID: 1734088476}
   - {fileID: 290985512}
   - {fileID: 490853730}
+  - {fileID: 482891237}
+  - {fileID: 930488890}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1354842728
@@ -5930,7 +6020,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 172.2161, y: 231.02348}
+  m_AnchoredPosition: {x: 82, y: 236}
   m_SizeDelta: {x: 251.432, y: 49.5789}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2047332548
@@ -5976,7 +6066,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2047332549}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 930488891}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: LaunchDossierCrush
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2047332549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6038,7 +6140,7 @@ PrefabInstance:
     - target: {fileID: 5077164827902382293, guid: 0daa701c9bc90164faedbc78054b640a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 782805466}
+      objectReference: {fileID: 0}
     - target: {fileID: 5077164827902382293, guid: 0daa701c9bc90164faedbc78054b640a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ClosePopup
@@ -6231,7 +6333,7 @@ PrefabInstance:
     - target: {fileID: 6175391866773538514, guid: cb420a60821fa0c46a7a092c3d637626, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 782805466}
+      objectReference: {fileID: 0}
     - target: {fileID: 6175391866773538514, guid: cb420a60821fa0c46a7a092c3d637626, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ClosePopup
@@ -6674,7 +6776,7 @@ PrefabInstance:
     - target: {fileID: 1441708962403275881, guid: dd51c1eb6444e4844a878590a47cbfac, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 782805466}
+      objectReference: {fileID: 0}
     - target: {fileID: 1441708962403275881, guid: dd51c1eb6444e4844a878590a47cbfac, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ClosePopup
@@ -6702,7 +6804,7 @@ PrefabInstance:
     - target: {fileID: 3766003429258394031, guid: dd51c1eb6444e4844a878590a47cbfac, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 782805466}
+      objectReference: {fileID: 0}
     - target: {fileID: 3766003429258394031, guid: dd51c1eb6444e4844a878590a47cbfac, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ClosePopup

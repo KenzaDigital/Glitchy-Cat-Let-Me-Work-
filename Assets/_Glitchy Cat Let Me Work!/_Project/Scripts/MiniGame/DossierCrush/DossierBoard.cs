@@ -352,6 +352,9 @@ public class DossierBoard : MonoBehaviour
             MiniGameManager.Instance?.SetCurrentMiniGame(MiniGameType.FichierCrush);
             ToDoListManager.Instance?.MarkTaskCompletedByName("FichierCrush");
             ProductivityManager.Instance?.AddProductivity(10);
+
+            // Retour à la scène principale
+            SceneManager.LoadScene("MainScene");
         }
         else
         {
@@ -359,4 +362,5 @@ public class DossierBoard : MonoBehaviour
             SceneManager.LoadScene("GameOverScene");
         }
     }
+
 }
