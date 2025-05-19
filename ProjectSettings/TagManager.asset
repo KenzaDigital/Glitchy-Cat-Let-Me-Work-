@@ -5,7 +5,10 @@ TagManager:
   serializedVersion: 3
   tags:
   - CatVirus
-  - DossierPieces
+  - Jaune
+  - Bleu
+  - Violet
+  - Rouge
   layers:
   - Default
   - TransparentFX
@@ -13,7 +16,7 @@ TagManager:
   - CatVirus
   - Water
   - UI
-  - 
+  - FichierPiece
   - 
   - 
   - 
