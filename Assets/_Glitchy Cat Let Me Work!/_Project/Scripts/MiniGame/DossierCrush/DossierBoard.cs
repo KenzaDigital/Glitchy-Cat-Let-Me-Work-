@@ -26,6 +26,7 @@ public class DossierBoard : MonoBehaviour
     public TextMeshProUGUI timerText;
 
     [Header ("score")]
+    public TextMeshProUGUI scoreText;
     private int score = 0;
     public int scoreToWin = 50; //  50 dossiers détruits
 
@@ -44,9 +45,10 @@ public class DossierBoard : MonoBehaviour
         timer -= Time.deltaTime;
 
         if (timerText != null)
-        {
             timerText.text = Mathf.CeilToInt(timer).ToString() + "s";
-        }
+
+        if (scoreText != null)
+            scoreText.text = "Score: " + score;
 
         if (timer <= 0f)
         {
@@ -55,11 +57,8 @@ public class DossierBoard : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
-        {
             SceneManager.LoadScene("MainMenu");
-        }
     }
-
     void InitBoardWithoutMatches()
     {
         for (int x = 0; x < width; x++)
