@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class DossierBoard : MonoBehaviour
 {
+    [Header("Board Settings")]
     public int width = 8;
     public int height = 8;
     public float tileSize = 2f;
@@ -14,10 +17,47 @@ public class DossierBoard : MonoBehaviour
     private bool isSwapping = false;
     private bool boardReady = false;
 
+    [Header("Timer Settings")]
+    public float timeLimit = 60f;
+    private float timer;
+    private bool gameEnded = false;
+
+    [Header("UI")]
+    public TextMeshProUGUI timerText;
+
+    [Header ("score")]
+    private int score = 0;
+    public int scoreToWin = 50; //  50 dossiers détruits
+
+
     void Start()
     {
         pieces = new FichierPiece[width, height];
+        timer = timeLimit;
         InitBoardWithoutMatches();
+    }
+
+    void Update()
+    {
+        if (gameEnded) return;
+
+        timer -= Time.deltaTime;
+
+        if (timerText != null)
+        {
+            timerText.text = Mathf.CeilToInt(timer).ToString() + "s";
+        }
+
+        if (timer <= 0f)
+        {
+            timer = 0f;
+            GameOver(false);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 
     void InitBoardWithoutMatches()
@@ -30,8 +70,10 @@ public class DossierBoard : MonoBehaviour
                 {
                     if (pieces[x, y] != null)
                         Destroy(pieces[x, y].gameObject);
+
                     SpawnPiece(x, y);
-                } while (HasMatchAt(x, y));
+                }
+                while (HasMatchAt(x, y));
             }
         }
 
@@ -41,25 +83,21 @@ public class DossierBoard : MonoBehaviour
     void SpawnPiece(int x, int y)
     {
         Vector2 spawnPos = new Vector2(x * tileSize, y * tileSize);
-        GameObject pieceObj = Instantiate(GetRandomPiece(), spawnPos, Quaternion.identity);
-        pieceObj.transform.parent = this.transform;
+        GameObject pieceObj = Instantiate(GetRandomPiece(), spawnPos, Quaternion.identity, this.transform);
 
         FichierPiece fichier = pieceObj.GetComponent<FichierPiece>();
         fichier.Init(x, y, this);
 
         SpriteRenderer sr = pieceObj.GetComponent<SpriteRenderer>();
         if (sr != null)
-        {
             sr.sortingOrder = height - y;
-        }
 
         pieces[x, y] = fichier;
     }
 
     GameObject GetRandomPiece()
     {
-        int index = Random.Range(0, piecePrefabs.Length);
-        return piecePrefabs[index];
+        return piecePrefabs[Random.Range(0, piecePrefabs.Length)];
     }
 
     public void SelectPiece(FichierPiece piece)
@@ -75,12 +113,9 @@ public class DossierBoard : MonoBehaviour
             if (AreAdjacent(selectedPiece, piece))
             {
                 StartCoroutine(SwapAndCheck(selectedPiece, piece));
-                selectedPiece = null;
             }
-            else
-            {
-                selectedPiece = piece;
-            }
+
+            selectedPiece = null;
         }
     }
 
@@ -142,20 +177,15 @@ public class DossierBoard : MonoBehaviour
         pieces[a.x, a.y] = b;
         pieces[b.x, b.y] = a;
 
-        int tempX = a.x;
-        int tempY = a.y;
-
-        a.x = b.x;
-        a.y = b.y;
-
-        b.x = tempX;
-        b.y = tempY;
+        (a.x, b.x) = (b.x, a.x);
+        (a.y, b.y) = (b.y, a.y);
     }
 
     List<FichierPiece> GetMatches()
     {
         List<FichierPiece> matches = new List<FichierPiece>();
 
+        // Horizontal
         for (int y = 0; y < height; y++)
         {
             for (int x = 0; x < width - 2; x++)
@@ -164,8 +194,7 @@ public class DossierBoard : MonoBehaviour
                 FichierPiece p2 = pieces[x + 1, y];
                 FichierPiece p3 = pieces[x + 2, y];
 
-                if (p1 != null && p2 != null && p3 != null &&
-                    p1.tag == p2.tag && p2.tag == p3.tag)
+                if (p1 && p2 && p3 && p1.tag == p2.tag && p2.tag == p3.tag)
                 {
                     if (!matches.Contains(p1)) matches.Add(p1);
                     if (!matches.Contains(p2)) matches.Add(p2);
@@ -174,6 +203,7 @@ public class DossierBoard : MonoBehaviour
             }
         }
 
+        // Vertical
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height - 2; y++)
@@ -182,8 +212,7 @@ public class DossierBoard : MonoBehaviour
                 FichierPiece p2 = pieces[x, y + 1];
                 FichierPiece p3 = pieces[x, y + 2];
 
-                if (p1 != null && p2 != null && p3 != null &&
-                    p1.tag == p2.tag && p2.tag == p3.tag)
+                if (p1 && p2 && p3 && p1.tag == p2.tag && p2.tag == p3.tag)
                 {
                     if (!matches.Contains(p1)) matches.Add(p1);
                     if (!matches.Contains(p2)) matches.Add(p2);
@@ -197,14 +226,28 @@ public class DossierBoard : MonoBehaviour
 
     void ClearMatches(List<FichierPiece> matches)
     {
-        foreach (var piece in matches)
+        foreach (FichierPiece piece in matches)
         {
-            pieces[piece.x, piece.y] = null;
-            Destroy(piece.gameObject);
+            if (piece != null)
+            {
+                pieces[piece.x, piece.y] = null;
+                Destroy(piece.gameObject);
+
+                score += 5;  // +5 par dossier détruit
+            }
         }
 
-        StartCoroutine(FillBoard());
+        if (score >= scoreToWin)
+        {
+            GameOver(true); // Victoire si score atteint
+        }
+        else
+        {
+            StartCoroutine(FillBoard());
+        }
     }
+
+
 
     IEnumerator FillBoard()
     {
@@ -217,11 +260,8 @@ public class DossierBoard : MonoBehaviour
                 if (pieces[x, y] != null)
                 {
                     int fallDistance = 0;
-
                     for (int i = y - 1; i >= 0 && pieces[x, i] == null; i--)
-                    {
                         fallDistance++;
-                    }
 
                     if (fallDistance > 0)
                     {
@@ -238,7 +278,6 @@ public class DossierBoard : MonoBehaviour
         }
 
         yield return new WaitForSeconds(0.3f);
-
         StartCoroutine(RefillBoard());
     }
 
@@ -285,16 +324,40 @@ public class DossierBoard : MonoBehaviour
         FichierPiece current = pieces[x, y];
         if (current == null) return false;
 
-        if (x >= 2 && pieces[x - 1, y] != null && pieces[x - 2, y] != null &&
+        // Horizontal check
+        if (x >= 2 &&
+            pieces[x - 1, y] && pieces[x - 2, y] &&
             pieces[x - 1, y].tag == current.tag &&
             pieces[x - 2, y].tag == current.tag)
             return true;
 
-        if (y >= 2 && pieces[x, y - 1] != null && pieces[x, y - 2] != null &&
+        // Vertical check
+        if (y >= 2 &&
+            pieces[x, y - 1] && pieces[x, y - 2] &&
             pieces[x, y - 1].tag == current.tag &&
             pieces[x, y - 2].tag == current.tag)
             return true;
 
         return false;
+    }
+
+    void GameOver(bool victory)
+    {
+        gameEnded = true;
+        boardReady = false;
+
+        if (victory)
+        {
+            Debug.Log("✅ Victoire dans FichierCrush");
+
+            MiniGameManager.Instance?.SetCurrentMiniGame(MiniGameType.FichierCrush);
+            ToDoListManager.Instance?.MarkTaskCompletedByName("FichierCrush");
+            ProductivityManager.Instance?.AddProductivity(10);
+        }
+        else
+        {
+            Debug.Log("❌ Temps écoulé ! Game Over");
+            SceneManager.LoadScene("GameOverScene");
+        }
     }
 }
