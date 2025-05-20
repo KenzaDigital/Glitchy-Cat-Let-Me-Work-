@@ -47,11 +47,11 @@ public class PongGameManager : MonoBehaviour
     {
         if (leftScore >= maxScore)
         {
-            EndGame("Joueur Gauche gagne !");
+            EndGame("PUNCHLINE!");
         }
         else if (rightScore >= maxScore)
         {
-            EndGame("Joueur Droit gagne !");
+            EndGame("IL TA PUNCHLINE!");
         }
     }
 
