@@ -4,55 +4,48 @@ public class Ball : MonoBehaviour
 {
     public float initialSpeed = 8f;
     private Rigidbody2D rb;
-    public PongGameManager gameManager;
+    public PongGameManager manager;
 
-    void Awake() // Appelé avant Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
     void Start()
     {
-       
         LaunchBall();
     }
 
     void LaunchBall()
     {
-        // Direction aléatoire pour le démarrage
-        float x = Random.Range(0, 2) == 0 ? -1 : 1; 
-        float y = Random.Range(0, 2) == 0 ? -1 : 1; 
-
+        float x = Random.Range(0, 2) == 0 ? -1 : 1;
+        float y = Random.Range(-0.5f, 0.5f);  // petite variation verticale
         rb.linearVelocity = new Vector2(x, y).normalized * initialSpeed;
+      
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        if (other.CompareTag("Goal"))
+        if (collision.gameObject.CompareTag("Paddle"))
         {
-            // Affiche le nom du mur touché : "WallLeft" ou "WallRight"
-            Debug.Log("But détecté sur : " + other.name);
-
-            // Appelle le PongGameManager
-            gameManager.ScorePoint(other.name);
-
+            float y = (transform.position.y - collision.transform.position.y) / collision.collider.bounds.size.y;
+            float directionX = rb.linearVelocity.x > 0 ? 1 : -1;
+            Vector2 dir = new Vector2(directionX, y).normalized;
+            rb.linearVelocity = dir * Mathf.Max(rb.linearVelocity.magnitude * 1.1f, initialSpeed);
+        }
+        else if (collision.gameObject.CompareTag("Goal"))
+        {
+            if (manager != null)
+                manager.ScorePoint(collision.gameObject.name);
             ResetBall();
         }
     }
 
-    // Appelé pour réinitialiser la position de la balle
     public void ResetBall()
     {
-        rb.linearVelocity = Vector2.zero; // Arrête la balle
-        transform.position = Vector2.zero; // Centre la balle
-        Invoke("LaunchBall", 1f); // Relance la balle après 1 seconde
+        rb.linearVelocity = Vector2.zero;
+        transform.position = Vector2.zero;
+        Debug.Log("Ball reset, waiting to relaunch...");
+        Invoke(nameof(LaunchBall), 1f);
     }
-
-  
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Paddle")) 
-            // Augmenter légèrement la vitesse de la balle après un rebond sur la raquette
-            rb.linearVelocity *= 1.05f; // Augmente la vitesse de 5%
-        }
-    }
+}

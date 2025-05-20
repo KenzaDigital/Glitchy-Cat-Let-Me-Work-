@@ -1,9 +1,10 @@
 using UnityEngine;
 
-public class AIPaddle : MonoBehaviour
+public class AIController : MonoBehaviour
 {
-    public float speed = 6f;
-    public Transform ball;
+    public Transform ballTransform;
+    public float speed = 8f;
+    public float yLimit = 4.5f;
 
     private Rigidbody2D rb;
 
@@ -14,20 +15,19 @@ public class AIPaddle : MonoBehaviour
 
     void Update()
     {
-        if (ball == null)
+        if (ballTransform == null)
             return;
 
-        // Suivre la position Y de la balle uniquement
-        float direction = ball.position.y > transform.position.y ? 1 : -1;
-        float distance = Mathf.Abs(ball.position.y - transform.position.y);
+        float direction = 0f;
 
-        if (distance > 0.2f)
-        {
-            rb.linearVelocity = new Vector2(0f, direction * speed);
-        }
-        else
-        {
-            rb.linearVelocity = Vector2.zero;
-        }
+        if (ballTransform.position.y > transform.position.y + 0.1f)
+            direction = 1f;
+        else if (ballTransform.position.y < transform.position.y - 0.1f)
+            direction = -1f;
+
+        Vector2 newPos = rb.position + Vector2.up * direction * speed * Time.deltaTime;
+        newPos.y = Mathf.Clamp(newPos.y, -yLimit, yLimit);
+
+        rb.MovePosition(newPos);
     }
 }

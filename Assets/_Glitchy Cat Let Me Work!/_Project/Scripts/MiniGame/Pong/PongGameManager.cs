@@ -25,15 +25,10 @@ public class PongGameManager : MonoBehaviour
 
     public void ScorePoint(string wallName)
     {
-        // Adapte selon tes noms exacts de murs
         if (wallName == "WallLeft")
-        {
             rightScore++;
-        }
         else if (wallName == "WallRight")
-        {
             leftScore++;
-        }
 
         UpdateScoreUI();
         CheckVictory();
@@ -63,22 +58,15 @@ public class PongGameManager : MonoBehaviour
     void EndGame(string message)
     {
         if (victoryPanel != null)
-        {
             victoryPanel.SetActive(true);
-        }
 
         if (victoryText != null)
-        {
             victoryText.text = message;
-        }
 
-        // Marque la tâche comme complétée si ToDoListManager est bien présent
+        // Marque la tâche dans la ToDoList si elle existe
         if (ToDoListManager.Instance != null)
-        {
             ToDoListManager.Instance.MarkTaskCompletedByName("PongMeeting");
-        }
 
-        // Retourne à la scène principale après 3 secondes
         Invoke(nameof(BackToMainScene), 3f);
     }
 
