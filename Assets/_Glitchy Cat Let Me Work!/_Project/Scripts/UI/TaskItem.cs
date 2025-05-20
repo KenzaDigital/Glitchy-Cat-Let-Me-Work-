@@ -10,7 +10,7 @@ public class TaskItem : MonoBehaviour
     public string taskText;
     public int productivityGain = 10;
 
-    private bool alreadyCompleted = false;
+    public bool alreadyCompleted = false;
 
     void Start()
     {
@@ -22,6 +22,11 @@ public class TaskItem : MonoBehaviour
 
         // S’enregistrer auprès du ToDoListManager
         ToDoListManager.Instance?.RegisterTask(this);
+    }
+
+    private void OnDestroy()
+    {
+        ToDoListManager.Instance?.Unsubscrible(this);
     }
 
     public void CompleteTask()

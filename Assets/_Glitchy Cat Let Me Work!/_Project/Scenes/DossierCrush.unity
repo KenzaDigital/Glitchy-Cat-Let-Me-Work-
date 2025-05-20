@@ -295,7 +295,7 @@ MonoBehaviour:
   timeLimit: 60
   timerText: {fileID: 1221777058}
   scoreText: {fileID: 437256406}
-  scoreToWin: 315
+  scoreToWin: 100
 --- !u!1 &308548771 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2945418102208418468, guid: f63900b279cc4e34cbbbc96856ea68ea, type: 3}

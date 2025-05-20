@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,8 +11,7 @@ public class ProductivityManager : MonoBehaviour
     public int currentProductivity = 50;
     public int maxProductivity = 100;
 
-    [Header("Ui")]
-    public Slider productivitySlider;
+    public Action OnUpdateUI;
 
 
     private void Awake()
@@ -27,25 +27,19 @@ public class ProductivityManager : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-
-        UpdateUI();
-
-    }
 
     public void AddProductivity(int amount)
     {
         currentProductivity =Mathf.Clamp(currentProductivity + amount,0,maxProductivity);
-       
-        UpdateUI();
+
+        OnUpdateUI?.Invoke();
     }
 
     public void RemoveProductivity(int amount)
     {
         currentProductivity = Mathf.Clamp(currentProductivity -  amount, 0, maxProductivity);
 
-        UpdateUI();
+        OnUpdateUI?.Invoke();
     }
 
     public int GetCurrentProductivity()
@@ -53,13 +47,6 @@ public class ProductivityManager : MonoBehaviour
         return currentProductivity;
     }
 
-    void UpdateUI ()
-    {
-        if (productivitySlider != null)
-        {
-            productivitySlider.value = (float)currentProductivity/maxProductivity;
-        }
-    }
     // Update is called once per frame
     void Update()
     {

@@ -33,6 +33,7 @@ public class DossierBoard : MonoBehaviour
 
     void Start()
     {
+        MiniGameManager.Instance.SetCurrentMiniGame(MiniGameType.FichierCrush);
         pieces = new FichierPiece[width, height];
         timer = timeLimit;
         InitBoardWithoutMatches();
@@ -353,7 +354,7 @@ public class DossierBoard : MonoBehaviour
             MiniGameManager.Instance?.SetCurrentMiniGame(MiniGameType.FichierCrush);
 
             // Marque la tâche comme terminée
-            ToDoListManager.Instance?.MarkTaskCompletedByName("FichierCrush");
+            ToDoListManager.Instance?.MarkTaskCompletedByName("Classe les Fichier");
             ToDoListManager.Instance?.SaveCompletedTasks();
 
             // Donne la productivité au joueur

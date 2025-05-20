@@ -28,7 +28,6 @@ public class MailSorterManager : MonoBehaviour
     private bool mailActive = false;
     private Coroutine timerCoroutine;
 
-    public ToDoListManager todoListManager;
 
     void Start()
     {
@@ -69,7 +68,7 @@ public class MailSorterManager : MonoBehaviour
             openMailButton.interactable = false;
 
             Debug.Log("🟢 Tous les mails sont finis. Tentative de marquer la tâche comme complétée...");
-            todoListManager?.MarkTaskCompletedByName("Trier les mails");
+            ToDoListManager.Instance?.MarkTaskCompletedByName("Trier les mails");
 
             MiniGameManager.Instance.SetCurrentMiniGame(MiniGameType.None);
 

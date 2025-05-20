@@ -40,6 +40,12 @@ public class ToDoListManager : MonoBehaviour
         }
     }
 
+    public void Unsubscrible(TaskItem task)
+    {
+        if (tasks.Contains(task))
+            tasks.Remove(task);
+    }
+
     public void MarkTaskCompletedByName(string taskName)
     {
         string key = taskName.Trim().ToLower();
@@ -48,6 +54,7 @@ public class ToDoListManager : MonoBehaviour
             return; // Déjà complété
 
         completedTasks.Add(key);
+
         PlayerPrefs.SetInt(key, 1);
         PlayerPrefs.Save();
 
@@ -89,7 +96,7 @@ public class ToDoListManager : MonoBehaviour
     {
         yield return "tridemail";
         yield return "fichiercrush";
-        yield return "pongmeeting";
+        yield return "rapport;";
     }
 
     // ✅ Pour re-synchroniser la UI avec les données sauvegardées

@@ -433,6 +433,7 @@ GameObject:
   m_Component:
   - component: {fileID: 122092358}
   - component: {fileID: 122092359}
+  - component: {fileID: 122092360}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -512,6 +513,19 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &122092360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 122092357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8676fac981e6f642aa2d501b426683c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 122092359}
 --- !u!1 &128931920
 GameObject:
   m_ObjectHideFlags: 0
@@ -712,11 +726,11 @@ Transform:
   m_GameObject: {fileID: 290985511}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -739.7035, y: -63.599792, z: 8.590764}
+  m_LocalPosition: {x: 324, y: 550, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1344720323}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &290985513
 MonoBehaviour:
@@ -781,7 +795,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e4468ce5faade7f49b5326c854994317, type: 2}
   timeToAnswer: 4
   maxLives: 3
-  todoListManager: {fileID: 290985513}
 --- !u!4 &355179660
 Transform:
   m_ObjectHideFlags: 0
@@ -791,11 +804,11 @@ Transform:
   m_GameObject: {fileID: 355179658}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 27.043701, y: 197.35852, z: 7.5710154}
+  m_LocalPosition: {x: 1090.7472, y: 810.9583, z: -1.0197487}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1344720323}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &482891236
 GameObject:
@@ -823,11 +836,11 @@ Transform:
   m_GameObject: {fileID: 482891236}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -354.86658, y: 204.6239, z: 8.519087}
+  m_LocalPosition: {x: 708.8369, y: 818.2237, z: -0.07167721}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1344720323}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &482891238
 MonoBehaviour:
@@ -881,11 +894,11 @@ Transform:
   m_GameObject: {fileID: 490853729}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1062.6016, y: -614.07874, z: 8.505569}
+  m_LocalPosition: {x: 1.1019287, y: -0.47894287, z: -0.08519459}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1344720323}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &490853731
 MonoBehaviour:
@@ -1251,6 +1264,7 @@ MonoBehaviour:
   taskLabel: {fileID: 1968463930}
   taskText: "Fin journ\xE9e"
   productivityGain: 10
+  alreadyCompleted: 0
 --- !u!1 &602630981
 GameObject:
   m_ObjectHideFlags: 0
@@ -1622,6 +1636,7 @@ MonoBehaviour:
   taskLabel: {fileID: 2028321351}
   taskText: Classe les Fichier
   productivityGain: 10
+  alreadyCompleted: 0
 --- !u!1 &699811415
 GameObject:
   m_ObjectHideFlags: 0
@@ -1906,6 +1921,7 @@ GameObject:
   m_Component:
   - component: {fileID: 782805465}
   - component: {fileID: 782805466}
+  - component: {fileID: 782805467}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1922,11 +1938,11 @@ Transform:
   m_GameObject: {fileID: 782805464}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 27.90503, y: -697.7259, z: -1.0472889}
+  m_LocalPosition: {x: 1091.6085, y: -84.1261, z: -9.638053}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1344720323}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &782805466
 MonoBehaviour:
@@ -1940,6 +1956,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8030c3bbb1341a4383f9b6f52f3fdef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &782805467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782805464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c17f389997a92bf45b0a4301560bb879, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentProductivity: 50
+  maxProductivity: 100
 --- !u!1 &787341736
 GameObject:
   m_ObjectHideFlags: 0
@@ -2528,11 +2558,11 @@ Transform:
   m_GameObject: {fileID: 930488889}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -354.86658, y: 204.6239, z: 8.519087}
+  m_LocalPosition: {x: 708.8369, y: 818.2237, z: -0.07167721}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1344720323}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &930488891
 MonoBehaviour:
@@ -2661,11 +2691,11 @@ Transform:
   m_GameObject: {fileID: 971221923}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -367.48474, y: 428.76093, z: 7.74362}
+  m_LocalPosition: {x: 696.21875, y: 1042.3607, z: -0.8471441}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1344720323}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &971221925
 MonoBehaviour:
@@ -3546,15 +3576,7 @@ Transform:
   m_LocalPosition: {x: 1063.7035, y: 613.5998, z: -8.590764}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 355179660}
-  - {fileID: 782805465}
-  - {fileID: 1734088476}
-  - {fileID: 290985512}
-  - {fileID: 490853730}
-  - {fileID: 482891237}
-  - {fileID: 930488890}
-  - {fileID: 971221924}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1354842728
@@ -4509,53 +4531,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac29a815b819d8f429dfdc08d49a1767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1734088475
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1734088476}
-  - component: {fileID: 1734088477}
-  m_Layer: 0
-  m_Name: productivityManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1734088476
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1734088475}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1344720323}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1734088477
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1734088475}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c17f389997a92bf45b0a4301560bb879, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentProductivity: 50
-  maxProductivity: 100
-  productivitySlider: {fileID: 122092359}
 --- !u!1 &1734570905
 GameObject:
   m_ObjectHideFlags: 0
@@ -5630,7 +5605,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Rapport '
+  m_text: PongMeeting
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6568,7 +6543,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1676349893568975779, guid: 9e04edc7f70481d4fbced362afe3962d, type: 3}
       propertyPath: taskText
-      value: Raport
+      value: PongMeeting
       objectReference: {fileID: 0}
     - target: {fileID: 1676349893568975779, guid: 9e04edc7f70481d4fbced362afe3962d, type: 3}
       propertyPath: taskLabel
@@ -6965,6 +6940,13 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
+  - {fileID: 355179660}
+  - {fileID: 782805465}
+  - {fileID: 290985512}
+  - {fileID: 490853730}
+  - {fileID: 482891237}
+  - {fileID: 930488890}
+  - {fileID: 971221924}
   - {fileID: 1344720323}
   - {fileID: 982809859}
   - {fileID: 1886167094}
