@@ -6,7 +6,7 @@ public enum MiniGameType
     None,
     TriDeMail,
     FichierCrush,
-    AuRapport,
+    PongMeeting,
  
     
    

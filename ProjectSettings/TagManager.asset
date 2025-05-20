@@ -9,6 +9,7 @@ TagManager:
   - Bleu
   - Violet
   - Rouge
+  - Goal
   layers:
   - Default
   - TransparentFX
