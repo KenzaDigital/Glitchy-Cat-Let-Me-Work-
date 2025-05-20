@@ -48,13 +48,11 @@ public class Ball : MonoBehaviour
         Invoke("LaunchBall", 1f); // Relance la balle après 1 seconde
     }
 
-    // Pour un rebond plus dynamique sur les raquettes, en dehors du Physics Material
+  
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Paddle")) // Taggez vos raquettes avec "Paddle"
-        {
+        if (collision.gameObject.CompareTag("Paddle")) 
             // Augmenter légèrement la vitesse de la balle après un rebond sur la raquette
             rb.linearVelocity *= 1.05f; // Augmente la vitesse de 5%
         }
     }
-}
