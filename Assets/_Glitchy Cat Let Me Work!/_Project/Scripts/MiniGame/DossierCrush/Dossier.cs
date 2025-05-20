@@ -13,4 +13,3 @@ public class Dossier : MonoBehaviour
         yIndex = y;
     }
 }
-// cette class represent les dossiers crush du jeux , il à une propriété pour sa position (xIndex et yIndex) et un boolean pour savoir si il est matcher

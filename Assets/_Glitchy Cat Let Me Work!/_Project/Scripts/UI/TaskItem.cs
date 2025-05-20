@@ -17,17 +17,13 @@ public class TaskItem : MonoBehaviour
         if (taskLabel != null)
             taskLabel.text = taskText;
 
-        // On désactive le toggle pour que le joueur ne puisse pas l'utiliser
         if (toggle != null)
-        {
-            toggle.interactable = false; // Bloque l'interaction utilisateur
-            // Pas besoin d'écouter le changement utilisateur puisque toggle est non interactif
-        }
+            toggle.interactable = false;
+
+        // S’enregistrer auprès du ToDoListManager
+        ToDoListManager.Instance?.RegisterTask(this);
     }
 
-    /// <summary>
-    /// Complète la tâche via le script uniquement
-    /// </summary>
     public void CompleteTask()
     {
         if (alreadyCompleted)
@@ -38,13 +34,27 @@ public class TaskItem : MonoBehaviour
         if (toggle != null)
         {
             toggle.isOn = true;
-            toggle.interactable = false; // s'assure que c'est non interactif
+            toggle.interactable = false;
         }
 
         if (taskLabel != null)
             taskLabel.text = $"<s>{taskText}</s>";
 
         ProductivityManager.Instance?.AddProductivity(productivityGain);
+    }
+
+    public void ResetTask()
+    {
+        alreadyCompleted = false;
+
+        if (toggle != null)
+        {
+            toggle.isOn = false;
+            toggle.interactable = false;
+        }
+
+        if (taskLabel != null)
+            taskLabel.text = taskText;
     }
 
     public bool IsCompleted()

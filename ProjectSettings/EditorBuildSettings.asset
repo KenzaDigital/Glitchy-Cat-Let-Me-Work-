@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Glitchy Cat Let Me Work!/_Project/Scenes/DossierCrush.unity
     guid: d427c410b28b18c4d886c36a3d18a5e6
+  - enabled: 1
+    path: Assets/_Glitchy Cat Let Me Work!/_Project/Scenes/PongMeeting.unity
+    guid: 3b1bd96514ba63f4e9c2c88696bd1453
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 3590b91b4603b465dbb4216d601bff33, type: 3}
   m_UseUCBPForAssetBundles: 0

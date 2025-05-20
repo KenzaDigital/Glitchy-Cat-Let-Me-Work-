@@ -349,11 +349,17 @@ public class DossierBoard : MonoBehaviour
         {
             Debug.Log("✅ Victoire dans FichierCrush");
 
+            // Enregistre le mini-jeu courant
             MiniGameManager.Instance?.SetCurrentMiniGame(MiniGameType.FichierCrush);
+
+            // Marque la tâche comme terminée
             ToDoListManager.Instance?.MarkTaskCompletedByName("FichierCrush");
+            ToDoListManager.Instance?.SaveCompletedTasks();
+
+            // Donne la productivité au joueur
             ProductivityManager.Instance?.AddProductivity(10);
 
-            // Retour à la scène principale
+            // Retour au menu
             SceneManager.LoadScene("MainScene");
         }
         else
@@ -362,5 +368,7 @@ public class DossierBoard : MonoBehaviour
             SceneManager.LoadScene("GameOverScene");
         }
     }
+
+
 
 }

@@ -6,4 +6,10 @@ public class MenuController : MonoBehaviour
     {
         GameManager.Instance.LoadScene("DossierCrush");
     }
+
+
+    public void LaunchPong()
+    {
+        GameManager.Instance.LoadScene("PongMeeting");
+    }
 }
