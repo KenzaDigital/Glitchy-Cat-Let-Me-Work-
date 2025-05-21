@@ -13,4 +13,9 @@ public class MenuController : MonoBehaviour
     {
         GameManager.Instance.LoadScene("PongMeeting");
     }
+
+    public void LaunchPauseDejeuner()
+    {
+        GameManager.Instance.LoadScene("PauseDej");
+    }
 }
