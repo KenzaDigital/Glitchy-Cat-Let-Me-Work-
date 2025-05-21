@@ -6,6 +6,7 @@ public enum MiniGameType
     TriDeMail,
     FichierCrush,
     PongMeeting,
+    PauseDejeuner,
 }
 
 public class MiniGameManager : MonoBehaviour

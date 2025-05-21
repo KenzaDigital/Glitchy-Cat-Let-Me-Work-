@@ -65,7 +65,7 @@ public class PongGameManager : MonoBehaviour
 
         // Marque la tâche dans la ToDoList si elle existe
         if (ToDoListManager.Instance != null)
-            ToDoListManager.Instance.MarkTaskCompletedByName("PongMeeting");
+            ToDoListManager.Instance.MarkTaskCompletedByName("Meeting");
 
         Invoke(nameof(BackToMainScene), 3f);
     }
