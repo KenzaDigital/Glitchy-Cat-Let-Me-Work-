@@ -18,4 +18,12 @@ public class MenuController : MonoBehaviour
     {
         GameManager.Instance.LoadScene("PauseDej");
     }
+
+   /* public void LaunchMainScene()
+    {
+        GameManager.Instance.LoadScene("MainScene");
+    }*/
+
+
+   
 }

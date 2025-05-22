@@ -16,7 +16,7 @@ public class SandwichEater : MonoBehaviour
 
     void Start()
     {
-        counterText.text = $"Tap : {currentTaps}/{tapsToEat}";
+        counterText.text = $"Crocs : {currentTaps}/{tapsToEat}";
         successText.gameObject.SetActive(false);
         tapButton.onClick.AddListener(OnTap);
     }
@@ -27,7 +27,7 @@ public class SandwichEater : MonoBehaviour
 
         currentTaps++;
         tapButton.transform.DOPunchScale(Vector3.one * 0.2f, 0.2f, 5, 1);
-        counterText.text = $"Tap : {currentTaps}/{tapsToEat}";
+        counterText.text = $"Crocs: {currentTaps}/{tapsToEat}";
 
         if (currentTaps >= tapsToEat)
         {
