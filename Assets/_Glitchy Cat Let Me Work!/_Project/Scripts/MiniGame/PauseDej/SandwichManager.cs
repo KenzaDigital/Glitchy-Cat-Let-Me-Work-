@@ -52,13 +52,14 @@ public class SandwichManager : MonoBehaviour
 
         if (placedOrder.Count == expectedOrder.Count)
         {
-            feedbackText.text = "🥪 Sandwich prêt !";
+            feedbackText.text = "Sandwich prêt !";
             ShowSandwichPanel();
         }
     }
 
     void ShowSandwichPanel()
     {
+        Debug.Log("Activation du panel sandwich !");
         sandwichDonePanel.SetActive(true);
        // sandwichDoneAnimator.Play("PopupIn", 0, 0f);
     }

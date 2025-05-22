@@ -41,6 +41,7 @@ public class DraggableObject : MonoBehaviour
 
         if (overBoard)
         {
+            Debug.Log($"Dépose ingredient: {ingredientType}");
             rb.bodyType = RigidbodyType2D.Kinematic;
 
             if (SandwichManager.Instance != null)
