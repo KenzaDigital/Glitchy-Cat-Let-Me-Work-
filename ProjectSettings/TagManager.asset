@@ -11,6 +11,7 @@ TagManager:
   - Rouge
   - Goal
   - Paddle
+  - Ingredient
   layers:
   - Default
   - TransparentFX
