@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class SandwichManager : MonoBehaviour
 {
@@ -19,6 +20,12 @@ public class SandwichManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+    }
+    public void Start()
+    {
+
+        MiniGameManager.Instance.SetCurrentMiniGame(MiniGameType.Dejeuner);
+
     }
 
     public void RegisterIngredientObject(DraggableObject obj)
@@ -82,4 +89,9 @@ public class SandwichManager : MonoBehaviour
         sandwichDonePanel.SetActive(false);
         ResetSandwich();
     }
+
+  
+
+
+
 }

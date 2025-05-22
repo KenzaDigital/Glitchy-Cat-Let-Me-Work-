@@ -661,6 +661,7 @@ MonoBehaviour:
   - {fileID: 613620568}
   - {fileID: 651155745}
   - {fileID: 1638917285}
+  - {fileID: 584982639}
 --- !u!1 &355179658
 GameObject:
   m_ObjectHideFlags: 0
@@ -1199,7 +1200,7 @@ GameObject:
   - component: {fileID: 584982637}
   - component: {fileID: 584982639}
   m_Layer: 5
-  m_Name: "Pause d\xE9jeuner "
+  m_Name: "PauseD\xE9jeuner "
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1307,7 +1308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toggle: {fileID: 584982638}
   taskLabel: {fileID: 1968463930}
-  taskText: "Pause D\xE9jeuner"
+  taskText: "Pause d\xE9jeuner"
   productivityGain: 10
   alreadyCompleted: 1
 --- !u!1 &602630981

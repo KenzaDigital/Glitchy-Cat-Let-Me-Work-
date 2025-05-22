@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class SandwichEater : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class SandwichEater : MonoBehaviour
 
     void Start()
     {
+       
         counterText.text = $"Crocs : {currentTaps}/{tapsToEat}";
         successText.gameObject.SetActive(false);
         tapButton.onClick.AddListener(OnTap);
@@ -49,6 +51,17 @@ public class SandwichEater : MonoBehaviour
         endSequence.AppendCallback(() =>
         {
             sandwichDonePanel.SetActive(false); // le cacher complètement
+
+            // Enregistre le mini-jeu courant
+            MiniGameManager.Instance?.SetCurrentMiniGame(MiniGameType.Dejeuner);
+
+            // Marque la tâche comme terminée
+            Debug.Log("Tâche PauseDejeuner marquée comme accomplie !");
+            ToDoListManager.Instance?.MarkTaskCompletedByName("Pause déjeuner");
+            // Enregistre les tâches complétées
+            ToDoListManager.Instance?.SaveCompletedTasks();
+            // Retour au menu
+            SceneManager.LoadScene("MainScene");
         });
     }
 }
