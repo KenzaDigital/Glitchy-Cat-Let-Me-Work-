@@ -4,7 +4,7 @@ public class CuttingBoard : MonoBehaviour
 {
     private SpriteRenderer sr;
     private Color originalColor;
-    public Color flashColor = Color.yellow; // Couleur flash
+    public Color flashColor = Color.yellow;
     public float flashDuration = 0.2f;
 
     void Start()
@@ -20,7 +20,7 @@ public class CuttingBoard : MonoBehaviour
             var drag = other.GetComponent<DraggableObject>();
             if (drag != null) drag.SetOverBoard(true);
 
-            FlashEffect(); // effet visuel rapide
+            FlashEffect();
         }
     }
 

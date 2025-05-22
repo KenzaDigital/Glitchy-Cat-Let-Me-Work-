@@ -1,27 +1,36 @@
 using UnityEngine;
+using DG.Tweening;
 
 public class DraggableObject : MonoBehaviour
 {
+    public string ingredientType;
+
     private Vector3 startPos;
-    private bool isDragging = false;
     private Rigidbody2D rb;
+    private bool isDragging = false;
     private bool overBoard = false;
 
     void Start()
     {
         startPos = transform.position;
         rb = GetComponent<Rigidbody2D>();
+
+        SandwichManager.Instance.RegisterIngredientObject(this);
+    }
+    public void SetOverBoard(bool value)
+    {
+        overBoard = value;
     }
 
     void OnMouseDown()
     {
         isDragging = true;
-        rb.linearVelocity = Vector2.zero;
-        rb.bodyType = RigidbodyType2D.Kinematic; // Stoppe la physique pendant le drag
+        rb.bodyType = RigidbodyType2D.Kinematic;
     }
 
     void OnMouseDrag()
     {
+        if (!isDragging) return;
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.position = new Vector3(mousePos.x, mousePos.y, 0);
     }
@@ -32,36 +41,51 @@ public class DraggableObject : MonoBehaviour
 
         if (overBoard)
         {
-            // Laisse l’objet sur la planche, sans gravité
             rb.bodyType = RigidbodyType2D.Kinematic;
+
+            if (SandwichManager.Instance != null)
+            {
+                SandwichManager.Instance.RegisterIngredient(ingredientType, this);
+            }
         }
         else
         {
-            // Revenir à la position d’origine et reprendre la gravité
-            StartCoroutine(ReturnToStart());
+            ReturnToStart();
         }
     }
-
-    private System.Collections.IEnumerator ReturnToStart()
+    public void ResetPosition()
     {
-        Vector3 currentPos = transform.position;
-        float elapsed = 0f;
-        float duration = 0.3f;
-
-        while (elapsed < duration)
-        {
-            transform.position = Vector3.Lerp(currentPos, startPos, elapsed / duration);
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-
-        transform.position = startPos;
+        transform.DOMove(startPos, 0.5f).SetEase(Ease.OutBack);
         rb.bodyType = RigidbodyType2D.Dynamic;
     }
 
-    // Appelé par la planche à découper via OnTriggerEnter2D/Exit2D
-    public void SetOverBoard(bool isOver)
+    public void PopAndDisappear()
     {
-        overBoard = isOver;
+        Sequence seq = DOTween.Sequence();
+        seq.Append(transform.DOScale(1.3f, 0.2f).SetEase(Ease.OutBack));
+        seq.Append(transform.DOScale(0f, 0.3f).SetEase(Ease.InBack));
+        seq.OnComplete(() => gameObject.SetActive(false));
+    }
+
+    void ReturnToStart()
+    {
+        transform.DOMove(startPos, 0.5f).SetEase(Ease.OutBack);
+        rb.bodyType = RigidbodyType2D.Dynamic;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("CuttingBoard"))
+        {
+            overBoard = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("CuttingBoard"))
+        {
+            overBoard = false;
+        }
     }
 }

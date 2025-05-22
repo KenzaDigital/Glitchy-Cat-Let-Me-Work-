@@ -12,6 +12,7 @@ TagManager:
   - Goal
   - Paddle
   - Ingredient
+  - CuttingBoard
   layers:
   - Default
   - TransparentFX
