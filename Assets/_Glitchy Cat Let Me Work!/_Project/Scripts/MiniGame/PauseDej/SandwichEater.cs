@@ -17,7 +17,9 @@ public class SandwichEater : MonoBehaviour
 
     void Start()
     {
-       
+
+        MiniGameManager.Instance.SetCurrentMiniGame(MiniGameType.Dejeuner);
+
         counterText.text = $"Crocs : {currentTaps}/{tapsToEat}";
         successText.gameObject.SetActive(false);
         tapButton.onClick.AddListener(OnTap);
@@ -56,7 +58,7 @@ public class SandwichEater : MonoBehaviour
             MiniGameManager.Instance?.SetCurrentMiniGame(MiniGameType.Dejeuner);
 
             // Marque la tâche comme terminée
-            Debug.Log("Tâche PauseDejeuner marquée comme accomplie !");
+            Debug.Log("Tâche Pause déjeuner marquée comme accomplie !");
             ToDoListManager.Instance?.MarkTaskCompletedByName("Pause déjeuner");
             // Enregistre les tâches complétées
             ToDoListManager.Instance?.SaveCompletedTasks();
