@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using DG.Tweening;
 
 public class DossierBoard : MonoBehaviour
 {
@@ -25,7 +26,7 @@ public class DossierBoard : MonoBehaviour
     [Header("UI")]
     public TextMeshProUGUI timerText;
 
-    [Header ("score")]
+    [Header("score")]
     public TextMeshProUGUI scoreText;
     private int score = 0;
     public int scoreToWin = 50; //  50 dossiers détruits
@@ -231,23 +232,30 @@ public class DossierBoard : MonoBehaviour
         {
             if (piece != null)
             {
-                pieces[piece.x, piece.y] = null;
-                Destroy(piece.gameObject);
+                // Animation DOTween : zoom + shrink + destroy
+                Sequence seq = DOTween.Sequence();
+                Transform t = piece.transform;
 
-                score += 5;  // +5 par dossier détruit
+                seq.Append(t.DOScale(1.2f, 0.1f))
+                   .Append(t.DOScale(0f, 0.2f).SetEase(Ease.InBack))
+                   .OnComplete(() => {
+                       pieces[piece.x, piece.y] = null;
+                       Destroy(piece.gameObject);
+                   });
+
+                score += 5;
             }
         }
 
         if (score >= scoreToWin)
         {
-            GameOver(true); // Victoire si score atteint
+            GameOver(true);
         }
         else
         {
             StartCoroutine(FillBoard());
         }
     }
-
 
 
     IEnumerator FillBoard()
@@ -370,7 +378,6 @@ public class DossierBoard : MonoBehaviour
             SceneManager.LoadScene("GameOverScene");
         }
     }
-
-
-
 }
+
+
