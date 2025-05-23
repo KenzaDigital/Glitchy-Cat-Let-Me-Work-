@@ -11,6 +11,7 @@ public class ChatBehavior : MonoBehaviour
 
     private bool isWalking = false;
     private Transform chatTransform;
+    private bool isPeting = false;
 
     private void Start()
     {
@@ -97,4 +98,36 @@ public class ChatBehavior : MonoBehaviour
             animator.SetBool("isWalking", false);
         }
     }
+
+    public void Pet ()
+    {
+        if (!isPeting&& !isWalking )
+        {
+            isPeting= true;
+            Debug.Log("Chat : Je suis content !");
+            animator.SetTrigger("CatPet");
+            StartCoroutine(EndPetting() );
+        }
+    }
+
+
+    IEnumerator EndPetting()
+    {
+        yield return new WaitForSeconds(1.0f); // Durée de la caresse (à ajuster)
+        isPeting = false;
+    }
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0)) // clic gauche
+        {
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+
+            if (hit.collider != null && hit.collider.gameObject == this.gameObject)
+            {
+                Pet();
+            }
+        }
+    }
 }
+

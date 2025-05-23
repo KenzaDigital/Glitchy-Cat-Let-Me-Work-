@@ -97,7 +97,7 @@ public class ToDoListManager : MonoBehaviour
         yield return "tridemail";
         yield return "fichiercrush";
         yield return "rapport;";
-        yield return "PauseDejeuner";
+        yield return "pause dejeuner";
     }
 
     // ✅ Pour re-synchroniser la UI avec les données sauvegardées
