@@ -4725,6 +4725,14 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 2f4aa81b402138940be05e1e083727da, type: 3}
   - name: Achievement
     clip: {fileID: 8300000, guid: 4703515ab54e00d4a968f1417a65b536, type: 3}
+  - name: Applause
+    clip: {fileID: 8300000, guid: 530ef689f7e7f3842963c44e1348f57c, type: 3}
+  - name: Wrong
+    clip: {fileID: 8300000, guid: 70d76d5700bb5964993d4f77b5f62c0c, type: 3}
+  - name: PopUpError
+    clip: {fileID: 8300000, guid: 9cac86d4abf582849b483de7c8df4f6a, type: 3}
+  - name: Blah
+    clip: {fileID: 8300000, guid: 7bc37acb2999c6e499f3994b28a4c0b9, type: 3}
   musicSource: {fileID: 1592127052}
   sfxSource: {fileID: 1592127052}
 --- !u!82 &1592127052

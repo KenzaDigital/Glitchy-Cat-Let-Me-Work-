@@ -18,9 +18,9 @@ public class VirusChatManager : MonoBehaviour
     public float sabotageDuration = 5f;
 
     [Header("Popups Settings")]
-    public int maxPopupsAtOnceStart = 1;  // Au début 1 popup max
-    public int maxPopupsAtOnceMax = 3;    // Max atteint après progression
-    public float popupDifficultyIncreaseInterval = 60f; // toutes les X secondes on augmente le max popups
+    public int maxPopupsAtOnceStart = 1;
+    public int maxPopupsAtOnceMax = 3;
+    public float popupDifficultyIncreaseInterval = 60f;
     private float popupDifficultyTimer = 0f;
 
     [Header("Distraction")]
@@ -42,15 +42,13 @@ public class VirusChatManager : MonoBehaviour
     {
         if (MiniGameManager.Instance.currentMiniGame != MiniGameType.TriDeMail)
         {
-            // Désactive tout si mini-jeu non actif
             blackoutPanel.SetActive(false);
             popupPanel.SetActive(false);
 
             foreach (var popup in popupWindows)
                 popup.SetActive(false);
 
-            isInterruptionActive = false;  // Assure que l'interruption est désactivée
-
+            isInterruptionActive = false;
             return;
         }
 
@@ -74,34 +72,29 @@ public class VirusChatManager : MonoBehaviour
         }
     }
 
-
     public void TriggerRandomInterruption()
     {
         if (MiniGameManager.Instance.currentMiniGame != MiniGameType.TriDeMail)
             return;
 
-        // Si blackout actif => on ne déclenche rien d'autre
         if (blackoutPanel.activeSelf)
             return;
 
-        // Compte popups actives
         int activePopupsCount = 0;
         foreach (var p in popupWindows)
             if (p.activeSelf)
                 activePopupsCount++;
 
-        // Si trop de popups déjà, on saute la popup interruption
         bool canShowPopup = activePopupsCount < maxPopupsAtOnceStart;
 
         int r;
         if (canShowPopup)
         {
-            r = Random.Range(0, 3); // Toutes les interruptions possibles
+            r = Random.Range(0, 3);
         }
         else
         {
-            // Pas de popup possible, on choisit entre blackout ou inversion seulement
-            r = Random.Range(0, 2); // 0 ou 1
+            r = Random.Range(0, 2);
         }
 
         switch (r)
@@ -143,13 +136,12 @@ public class VirusChatManager : MonoBehaviour
     {
         isInterruptionActive = true;
 
-        // On peut afficher plusieurs popups si maxPopupsAtOnce > 1
         int activePopupsCount = 0;
         foreach (var p in popupWindows)
             if (p.activeSelf)
                 activePopupsCount++;
 
-        int popupsToShow = Mathf.Min(maxPopupsAtOnceStart - activePopupsCount, 2); // Affiche 1 ou 2 popups max
+        int popupsToShow = Mathf.Min(maxPopupsAtOnceStart - activePopupsCount, 2);
 
         for (int i = 0; i < popupsToShow; i++)
         {
@@ -157,6 +149,7 @@ public class VirusChatManager : MonoBehaviour
             if (popup != null)
             {
                 popup.SetActive(true);
+                audioManager.instance.PlaySFX("PopUpError"); // ✅ Joue le son
                 Debug.Log("Popup affichée : " + popup.name);
             }
             else
@@ -166,10 +159,7 @@ public class VirusChatManager : MonoBehaviour
             }
         }
 
-        // Active le conteneur popupPanel si au moins un popup actif
         popupPanel.SetActive(AreAnyPopupsActive());
-
-        // Pas de fermeture auto, joueur ferme manuellement
         isInterruptionActive = false;
         yield return null;
     }
@@ -208,9 +198,6 @@ public class VirusChatManager : MonoBehaviour
 
         yield return new WaitForSeconds(sabotageDuration);
 
-        // Remet les boutons à leur place initiale 
-        
-
         isInterruptionActive = false;
     }
 
@@ -219,7 +206,6 @@ public class VirusChatManager : MonoBehaviour
         popup.SetActive(false);
         Debug.Log("Popup fermée par l'utilisateur");
 
-        // Désactive le conteneur si plus aucun popup actif
         if (!AreAnyPopupsActive())
         {
             popupPanel.SetActive(false);
@@ -252,7 +238,7 @@ public class VirusChatManager : MonoBehaviour
     IEnumerator CalmDuration()
     {
         Debug.Log("Le chat est calme temporairement");
-        yield return new WaitForSeconds(15f); // 
+        yield return new WaitForSeconds(15f);
         Debug.Log("Le chat recommence à embêter !");
     }
 }

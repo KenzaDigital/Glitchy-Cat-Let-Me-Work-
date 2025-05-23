@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
@@ -19,15 +19,17 @@ public class Ball : MonoBehaviour
     void LaunchBall()
     {
         float x = Random.Range(0, 2) == 0 ? -1 : 1;
-        float y = Random.Range(-0.5f, 0.5f);  // petite variation verticale
+        float y = Random.Range(-0.5f, 0.5f);
         rb.linearVelocity = new Vector2(x, y).normalized * initialSpeed;
-      
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Paddle"))
         {
+            // ✅ Joue le son "Blac" à chaque contact avec un paddle
+            audioManager.instance.PlaySFX("Blah");
+
             float y = (transform.position.y - collision.transform.position.y) / collision.collider.bounds.size.y;
             float directionX = rb.linearVelocity.x > 0 ? 1 : -1;
             Vector2 dir = new Vector2(directionX, y).normalized;
@@ -37,6 +39,7 @@ public class Ball : MonoBehaviour
         {
             if (manager != null)
                 manager.ScorePoint(collision.gameObject.name);
+
             ResetBall();
         }
     }

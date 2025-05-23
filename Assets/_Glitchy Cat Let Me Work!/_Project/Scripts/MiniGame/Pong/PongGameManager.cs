@@ -21,6 +21,7 @@ public class PongGameManager : MonoBehaviour
 
         if (victoryPanel != null)
             victoryPanel.SetActive(false);
+
         audioManager.instance.PlayMusic("PongMeeting", true);
     }
 
@@ -52,7 +53,7 @@ public class PongGameManager : MonoBehaviour
         }
         else if (rightScore >= maxScore)
         {
-            EndGame("IL TA PUNCHLINE!");
+            EndGame("IL T'A PUNCHLINE!");
         }
     }
 
@@ -64,7 +65,6 @@ public class PongGameManager : MonoBehaviour
         if (victoryText != null)
             victoryText.text = message;
 
-        // Marque la tâche dans la ToDoList si elle existe
         if (ToDoListManager.Instance != null)
             ToDoListManager.Instance.MarkTaskCompletedByName("Meeting");
 
@@ -73,7 +73,8 @@ public class PongGameManager : MonoBehaviour
 
     void BackToMainScene()
     {
-        audioManager.instance.PlaySFX("Achievement");
+        audioManager.instance.StopMusic(); //  Arrête la musique
+        audioManager.instance.PlaySFX("Achievement"); //  Son de victoire
         SceneManager.LoadScene("MainScene");
     }
 }
