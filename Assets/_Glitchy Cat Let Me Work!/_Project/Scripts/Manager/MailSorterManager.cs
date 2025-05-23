@@ -28,7 +28,6 @@ public class MailSorterManager : MonoBehaviour
     private bool mailActive = false;
     private Coroutine timerCoroutine;
 
-
     void Start()
     {
         lives = maxLives;
@@ -66,13 +65,10 @@ public class MailSorterManager : MonoBehaviour
             timerText.gameObject.SetActive(false);
             CanvasMail.gameObject.SetActive(false);
             openMailButton.interactable = false;
-           
 
             Debug.Log("🟢 Tous les mails sont finis. Tentative de marquer la tâche comme complétée...");
-            // ✅ JOUER LE SON DE SUCCÈS ICI
-            audioManager.instance.PlaySFX("Achievement");
+            audioManager.instance.PlaySFX("Achievement"); // ✅ SFX de fin
             ToDoListManager.Instance?.MarkTaskCompletedByName("Trier les mails");
-
             MiniGameManager.Instance.SetCurrentMiniGame(MiniGameType.None);
 
             return;
@@ -131,6 +127,7 @@ public class MailSorterManager : MonoBehaviour
         {
             StartCoroutine(ShowFeedback("Yeah !", Color.green));
             ProductivityManager.Instance?.AddProductivity(10);
+            audioManager.instance.PlaySFX("Applause"); // ✅ SFX bonne réponse
         }
         else
         {
@@ -150,6 +147,7 @@ public class MailSorterManager : MonoBehaviour
 
         lives--;
         livesText.text = "Vies : " + lives;
+        audioManager.instance.PlaySFX("Wrong"); // ✅ SFX mauvaise réponse
         StartCoroutine(ShowFeedback("Bouuuuh...", Color.red));
         ProductivityManager.Instance?.RemoveProductivity(10);
 
@@ -176,10 +174,9 @@ public class MailSorterManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.3f);
 
-        openMailButton.interactable = false; // On désactive le bouton ouvrir mail pour éviter doublons
+        openMailButton.interactable = false;
         ShowMail();
 
-        // On ne relance le timer que s’il reste des mails
         if (currentIndex < mails.Length)
         {
             StartTimer();
@@ -222,7 +219,6 @@ public class MailSorterManager : MonoBehaviour
             feedbackText.gameObject.SetActive(false);
             openMailButton.interactable = true;
             Debug.Log("Mail fermé !");
-
             MiniGameManager.Instance.SetCurrentMiniGame(MiniGameType.None);
         }
     }
