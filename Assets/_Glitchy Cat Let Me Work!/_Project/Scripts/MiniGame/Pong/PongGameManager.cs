@@ -21,6 +21,7 @@ public class PongGameManager : MonoBehaviour
 
         if (victoryPanel != null)
             victoryPanel.SetActive(false);
+        audioManager.instance.PlayMusic("PongMeeting", true);
     }
 
     public void ScorePoint(string wallName)
@@ -72,6 +73,7 @@ public class PongGameManager : MonoBehaviour
 
     void BackToMainScene()
     {
+        audioManager.instance.PlaySFX("Achievement");
         SceneManager.LoadScene("MainScene");
     }
 }

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
@@ -20,7 +20,7 @@ public class TaskItem : MonoBehaviour
         if (toggle != null)
             toggle.interactable = false;
 
-        // S�enregistrer aupr�s du ToDoListManager
+        // S’enregistrer auprès du ToDoListManager
         ToDoListManager.Instance?.RegisterTask(this);
     }
 
@@ -46,6 +46,9 @@ public class TaskItem : MonoBehaviour
             taskLabel.text = $"<s>{taskText}</s>";
 
         ProductivityManager.Instance?.AddProductivity(productivityGain);
+
+        // Jouer le son "Achievement" quand la tâche est complétée
+        audioManager.instance.PlaySFX("Achievement");
     }
 
     public void ResetTask()

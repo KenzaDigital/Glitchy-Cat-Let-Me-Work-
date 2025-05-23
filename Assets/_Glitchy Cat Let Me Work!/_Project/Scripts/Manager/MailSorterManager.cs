@@ -66,8 +66,11 @@ public class MailSorterManager : MonoBehaviour
             timerText.gameObject.SetActive(false);
             CanvasMail.gameObject.SetActive(false);
             openMailButton.interactable = false;
+           
 
             Debug.Log("🟢 Tous les mails sont finis. Tentative de marquer la tâche comme complétée...");
+            // ✅ JOUER LE SON DE SUCCÈS ICI
+            audioManager.instance.PlaySFX("Achievement");
             ToDoListManager.Instance?.MarkTaskCompletedByName("Trier les mails");
 
             MiniGameManager.Instance.SetCurrentMiniGame(MiniGameType.None);

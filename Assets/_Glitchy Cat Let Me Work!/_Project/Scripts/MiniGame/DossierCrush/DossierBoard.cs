@@ -33,6 +33,7 @@ public class DossierBoard : MonoBehaviour
 
     void Start()
     {
+        audioManager.instance.PlayMusic("DossierCrush", true);
         MiniGameManager.Instance.SetCurrentMiniGame(MiniGameType.FichierCrush);
         pieces = new FichierPiece[width, height];
         timer = timeLimit;
