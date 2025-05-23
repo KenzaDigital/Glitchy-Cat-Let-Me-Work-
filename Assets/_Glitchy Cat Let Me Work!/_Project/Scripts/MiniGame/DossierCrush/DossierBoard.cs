@@ -232,6 +232,8 @@ public class DossierBoard : MonoBehaviour
         {
             if (piece != null)
             {
+                // Joue le son Pop au moment où la pièce est détruite
+                audioManager.instance.PlaySFX("Pop");
                 // Animation DOTween : zoom + shrink + destroy
                 Sequence seq = DOTween.Sequence();
                 Transform t = piece.transform;
@@ -299,6 +301,8 @@ public class DossierBoard : MonoBehaviour
                 if (pieces[x, y] == null)
                 {
                     SpawnPiece(x, y);
+                    // Joue le son "blip" ici à chaque apparition d'une pièce
+                    audioManager.instance.PlaySFX("Blip");
                     yield return new WaitForSeconds(0.05f);
                 }
             }
@@ -354,6 +358,8 @@ public class DossierBoard : MonoBehaviour
     {
         gameEnded = true;
         boardReady = false;
+        // Arrêter la musique à la fin du jeu
+        audioManager.instance.StopMusic();
 
         if (victory)
         {
