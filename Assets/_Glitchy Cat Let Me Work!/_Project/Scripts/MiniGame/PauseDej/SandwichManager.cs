@@ -24,7 +24,7 @@ public class SandwichManager : MonoBehaviour
     public void Start()
     {
 
-        MiniGameManager.Instance.SetCurrentMiniGame(MiniGameType.Dejeuner);
+        MiniGameManager.Instance.SetCurrentMiniGame(MiniGameType.PauseDejeuner);
 
     }
 

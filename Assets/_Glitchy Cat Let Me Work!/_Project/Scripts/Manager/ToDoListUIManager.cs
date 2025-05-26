@@ -9,12 +9,13 @@ public class ToDoListUIManager : MonoBehaviour
             ToDoListManager.Instance.SyncTasksState();
         }
 
-        // Marquer la tâche du mini-jeu courant comme accomplie (si défini)
         if (MiniGameManager.Instance != null)
         {
             MiniGameType lastGame = MiniGameManager.Instance.GetCurrentMiniGame();
+
             if (lastGame != MiniGameType.None)
             {
+                
                 ToDoListManager.Instance.MarkTaskCompletedByName(lastGame.ToString());
                 ToDoListManager.Instance.SaveCompletedTasks();
 

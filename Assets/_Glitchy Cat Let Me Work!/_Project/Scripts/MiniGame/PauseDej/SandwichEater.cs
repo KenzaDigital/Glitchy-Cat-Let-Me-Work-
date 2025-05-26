@@ -18,7 +18,7 @@ public class SandwichEater : MonoBehaviour
     void Start()
     {
 
-        MiniGameManager.Instance.SetCurrentMiniGame(MiniGameType.Dejeuner);
+        MiniGameManager.Instance.SetCurrentMiniGame(MiniGameType.PauseDejeuner);
 
         counterText.text = $"Crocs : {currentTaps}/{tapsToEat}";
         successText.gameObject.SetActive(false);
@@ -29,6 +29,7 @@ public class SandwichEater : MonoBehaviour
     {
         if (finished) return;
 
+        audioManager.instance.PlaySFX("Crunch");
         currentTaps++;
         tapButton.transform.DOPunchScale(Vector3.one * 0.2f, 0.2f, 5, 1);
         counterText.text = $"Crocs: {currentTaps}/{tapsToEat}";
@@ -55,12 +56,12 @@ public class SandwichEater : MonoBehaviour
             sandwichDonePanel.SetActive(false); // le cacher complètement
 
             // Enregistre le mini-jeu courant
-            MiniGameManager.Instance?.SetCurrentMiniGame(MiniGameType.Dejeuner);
+            MiniGameManager.Instance?.SetCurrentMiniGame(MiniGameType.PauseDejeuner);
 
             // Marque la tâche comme terminée
             Debug.Log("Tâche Pause déjeuner marquée comme accomplie !");
             audioManager.instance.PlaySFX("Achievement");
-            ToDoListManager.Instance?.MarkTaskCompletedByName("Pause déjeuner");
+            ToDoListManager.Instance?.MarkTaskCompletedByName("PauseDejeuner");
             // Enregistre les tâches complétées
             ToDoListManager.Instance?.SaveCompletedTasks();
             // Retour au menu

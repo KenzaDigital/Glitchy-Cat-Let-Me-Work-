@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class ToDoListManager : MonoBehaviour
 {
@@ -8,7 +9,6 @@ public class ToDoListManager : MonoBehaviour
     [Header("Liste des tâches")]
     public List<TaskItem> tasks = new List<TaskItem>();
 
-    // Stocke les noms des tâches complétées (en minuscules)
     private HashSet<string> completedTasks = new HashSet<string>();
 
     private void Awake()
@@ -27,13 +27,11 @@ public class ToDoListManager : MonoBehaviour
 
     public void RegisterTask(TaskItem task)
     {
-        string key = task.taskText.Trim().ToLower();
-
-        // Évite les doublons
         if (!tasks.Contains(task))
             tasks.Add(task);
 
-        // Si la tâche a déjà été complétée, on la met à jour
+        // Marquer comme complétée si déjà dans la liste
+        string key = task.GetTaskKey();
         if (completedTasks.Contains(key))
         {
             task.CompleteTask();
@@ -51,7 +49,7 @@ public class ToDoListManager : MonoBehaviour
         string key = taskName.Trim().ToLower();
 
         if (completedTasks.Contains(key))
-            return; // Déjà complété
+            return;
 
         completedTasks.Add(key);
 
@@ -60,7 +58,7 @@ public class ToDoListManager : MonoBehaviour
 
         foreach (var task in tasks)
         {
-            if (task.taskText.Trim().ToLower() == key)
+            if (task.GetTaskKey() == key)
             {
                 task.CompleteTask();
                 return;
@@ -72,45 +70,46 @@ public class ToDoListManager : MonoBehaviour
     {
         completedTasks.Clear();
 
-        // on ne dépend plus de la présence des objets dans la scène ici
         foreach (string key in PlayerPrefsKeys())
         {
             if (PlayerPrefs.GetInt(key, 0) == 1)
+            {
                 completedTasks.Add(key);
+            }
         }
     }
 
-    // ✅ MÉTHODE MANQUANTE : à appeler après avoir complété une tâche
     public void SaveCompletedTasks()
     {
         foreach (string task in completedTasks)
         {
             PlayerPrefs.SetInt(task, 1);
         }
-
         PlayerPrefs.Save();
     }
 
-    // Méthode utilitaire pour récupérer les clés connues
     private IEnumerable<string> PlayerPrefsKeys()
     {
+        // Toutes les clés en minuscules, sans espace ni accents
         yield return "tridemail";
         yield return "fichiercrush";
-        yield return "rapport;";
-        yield return "pause dejeuner";
+        yield return "rapport";
+        yield return "pausedejeuner";
     }
 
-    // ✅ Pour re-synchroniser la UI avec les données sauvegardées
     public void SyncTasksState()
     {
         foreach (var task in tasks)
         {
-            string key = task.taskText.Trim().ToLower();
+            string key = task.GetTaskKey();
             if (completedTasks.Contains(key))
             {
                 task.CompleteTask();
             }
+            else
+            {
+                task.ResetTask();
+            }
         }
     }
-
 }

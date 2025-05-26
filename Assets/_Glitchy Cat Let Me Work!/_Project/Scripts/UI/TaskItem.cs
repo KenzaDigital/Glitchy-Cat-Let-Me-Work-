@@ -14,13 +14,9 @@ public class TaskItem : MonoBehaviour
 
     void Start()
     {
-        if (taskLabel != null)
-            taskLabel.text = taskText;
-
         if (toggle != null)
             toggle.interactable = false;
 
-        // S’enregistrer auprès du ToDoListManager
         ToDoListManager.Instance?.RegisterTask(this);
     }
 
@@ -43,11 +39,15 @@ public class TaskItem : MonoBehaviour
         }
 
         if (taskLabel != null)
+        {
+            Debug.Log($"Avant modif: {taskLabel.text}");
             taskLabel.text = $"<s>{taskText}</s>";
+            taskLabel.ForceMeshUpdate();
+            Debug.Log($"Après modif: {taskLabel.text}");
+        }
 
         ProductivityManager.Instance?.AddProductivity(productivityGain);
 
-        // Jouer le son "Achievement" quand la tâche est complétée
         audioManager.instance.PlaySFX("Achievement");
     }
 
@@ -62,11 +62,18 @@ public class TaskItem : MonoBehaviour
         }
 
         if (taskLabel != null)
+        {
             taskLabel.text = taskText;
+        }
     }
 
     public bool IsCompleted()
     {
         return alreadyCompleted;
+    }
+
+    public string GetTaskKey()
+    {
+        return taskText.Trim().ToLower();
     }
 }
