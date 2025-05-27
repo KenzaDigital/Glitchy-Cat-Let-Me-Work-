@@ -24,6 +24,12 @@ public class ToDoListManager : MonoBehaviour
         }
     }
 
+    public void Start()
+    {
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
+    }
+
     public void RegisterTask(TaskItem task)
     {
         if (!tasks.Contains(task))

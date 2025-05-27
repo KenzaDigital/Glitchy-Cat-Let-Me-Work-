@@ -17,6 +17,7 @@ public class PongGameManager : MonoBehaviour
 
     private void Start()
     {
+        MiniGameManager.Instance.SetCurrentMiniGame(MiniGameType.PongMeeting);  
         UpdateScoreUI();
 
         if (victoryPanel != null)
