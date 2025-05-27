@@ -1247,7 +1247,7 @@ GameObject:
   - component: {fileID: 584982637}
   - component: {fileID: 584982639}
   m_Layer: 5
-  m_Name: "Pause d\xE9jeuner"
+  m_Name: pausedejeuner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1355,7 +1355,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toggle: {fileID: 584982638}
   taskLabel: {fileID: 1968463930}
-  taskText: PauseDejeuner
+  taskText: pausedejeuner
   productivityGain: 10
   alreadyCompleted: 1
 --- !u!1 &602630981
@@ -2158,6 +2158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8030c3bbb1341a4383f9b6f52f3fdef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentDayPart: 0
 --- !u!114 &782805467
 MonoBehaviour:
   m_ObjectHideFlags: 0

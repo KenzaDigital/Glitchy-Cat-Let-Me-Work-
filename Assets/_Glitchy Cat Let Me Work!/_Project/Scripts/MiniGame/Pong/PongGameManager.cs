@@ -49,15 +49,15 @@ public class PongGameManager : MonoBehaviour
     {
         if (leftScore >= maxScore)
         {
-            EndGame("PUNCHLINE!");
+            EndGame(true, "PUNCHLINE!"); // victoire joueur gauche
         }
         else if (rightScore >= maxScore)
         {
-            EndGame("IL T'A PUNCHLINE!");
+            EndGame(false, "IL T'A PUNCHLINE!"); // défaite joueur gauche
         }
     }
 
-    void EndGame(string message)
+    void EndGame(bool playerWon, string message)
     {
         if (victoryPanel != null)
             victoryPanel.SetActive(true);
@@ -65,16 +65,36 @@ public class PongGameManager : MonoBehaviour
         if (victoryText != null)
             victoryText.text = message;
 
-        if (ToDoListManager.Instance != null)
-            ToDoListManager.Instance.MarkTaskCompletedByName("Meeting");
+        if (playerWon)
+        {
+            ToDoListManager.Instance?.MarkTaskCompletedByName("Meeting"); // 
+            ProductivityManager.Instance?.AddProductivity(10);
+        }
+        else
+        {
+            ProductivityManager.Instance?.RemoveProductivity(15);
+
+            if (ProductivityManager.Instance.GetCurrentProductivity() <= 0)
+            {
+                // Game over global si productivité à zéro
+                Invoke(nameof(GoToGameOver), 3f);
+                return;
+            }
+        }
 
         Invoke(nameof(BackToMainScene), 3f);
     }
 
     void BackToMainScene()
     {
-        audioManager.instance.StopMusic(); //  Arrête la musique
-        audioManager.instance.PlaySFX("Achievement"); //  Son de victoire
+        audioManager.instance.StopMusic(); // Arrête la musique
+        audioManager.instance.PlaySFX("Achievement"); // Son de victoire
         SceneManager.LoadScene("MainScene");
+    }
+
+    void GoToGameOver()
+    {
+        audioManager.instance.StopMusic();
+        SceneManager.LoadScene("GameOverScene");
     }
 }

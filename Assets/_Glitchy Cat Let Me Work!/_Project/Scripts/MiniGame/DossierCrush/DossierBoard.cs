@@ -365,25 +365,33 @@ public class DossierBoard : MonoBehaviour
         {
             Debug.Log("✅ Victoire dans FichierCrush");
 
-            // Enregistre le mini-jeu courant
             MiniGameManager.Instance?.SetCurrentMiniGame(MiniGameType.FichierCrush);
-
-            // Marque la tâche comme terminée
-            ToDoListManager.Instance?.MarkTaskCompletedByName("Classe les Fichier");
+            ToDoListManager.Instance?.MarkTaskCompletedByName("Classe les Fichier"); //
             ToDoListManager.Instance?.SaveCompletedTasks();
 
-            // Donne la productivité au joueur
-            ProductivityManager.Instance?.AddProductivity(10);
+            ProductivityManager.Instance?.AddProductivity(10);  // Récompense
 
-            // Retour au menu
             SceneManager.LoadScene("MainScene");
         }
         else
         {
             Debug.Log("❌ Temps écoulé ! Game Over");
-            SceneManager.LoadScene("GameOverScene");
+
+            ProductivityManager.Instance?.RemoveProductivity(40);  // Pénalité
+
+            if (ProductivityManager.Instance.GetCurrentProductivity() <= 0)
+            {
+                // Si productivité à zéro, game over global
+                SceneManager.LoadScene("GameOverScene");
+            }
+            else
+            {
+                // Sinon, retourner au menu principal ou autre action
+                SceneManager.LoadScene("MainScene");
+            }
         }
     }
+
 }
 
 

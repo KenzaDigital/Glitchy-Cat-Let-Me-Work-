@@ -15,11 +15,17 @@ public class ToDoListUIManager : MonoBehaviour
 
             if (lastGame != MiniGameType.None)
             {
-                
+                // Marquer la tâche comme complétée
                 ToDoListManager.Instance.MarkTaskCompletedByName(lastGame.ToString());
                 ToDoListManager.Instance.SaveCompletedTasks();
 
                 MiniGameManager.Instance.ClearCurrentMiniGame();
+
+                // Vérifie si toutes les tâches du moment sont finies
+                if (ToDoListManager.Instance.AreTasksForCurrentStepCompleted())
+                {
+                    GameManager.Instance?.NextDayStep();
+                }
             }
         }
     }

@@ -68,7 +68,8 @@ public class SandwichManager : MonoBehaviour
     {
         Debug.Log("Activation du panel sandwich !");
         sandwichDonePanel.SetActive(true);
-       // sandwichDoneAnimator.Play("PopupIn", 0, 0f);
+     
+        // sandwichDoneAnimator.Play("PopupIn", 0, 0f);
     }
 
     public void ResetSandwich()

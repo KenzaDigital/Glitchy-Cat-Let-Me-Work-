@@ -61,12 +61,15 @@ public class SandwichEater : MonoBehaviour
             // Marque la tâche comme terminée
             Debug.Log("Tâche Pause déjeuner marquée comme accomplie !");
             audioManager.instance.PlaySFX("Achievement");
-            ToDoListManager.Instance?.MarkTaskCompletedByName("PauseDejeuner");
+
+           
             // Enregistre les tâches complétées
             ToDoListManager.Instance?.SaveCompletedTasks();
             // Retour au menu
             SceneManager.LoadScene("MainScene");
-            
+            Debug.Log("BareLenomPauseDEJ");
+            ToDoListManager.Instance?.MarkTaskCompletedByName("pausedejeuner");
+
         });
     }
 }

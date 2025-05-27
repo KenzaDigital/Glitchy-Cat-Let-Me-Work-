@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using System.Linq;
 
 public class ToDoListManager : MonoBehaviour
 {
@@ -30,7 +29,6 @@ public class ToDoListManager : MonoBehaviour
         if (!tasks.Contains(task))
             tasks.Add(task);
 
-        // Marquer comme complétée si déjà dans la liste
         string key = task.GetTaskKey();
         if (completedTasks.Contains(key))
         {
@@ -52,7 +50,6 @@ public class ToDoListManager : MonoBehaviour
             return;
 
         completedTasks.Add(key);
-
         PlayerPrefs.SetInt(key, 1);
         PlayerPrefs.Save();
 
@@ -90,11 +87,11 @@ public class ToDoListManager : MonoBehaviour
 
     private IEnumerable<string> PlayerPrefsKeys()
     {
-        // Toutes les clés en minuscules, sans espace ni accents
         yield return "tridemail";
         yield return "fichiercrush";
-        yield return "rapport";
+        yield return "meeting";
         yield return "pausedejeuner";
+        yield return "fidelistesclients";
     }
 
     public void SyncTasksState()
@@ -111,5 +108,45 @@ public class ToDoListManager : MonoBehaviour
                 task.ResetTask();
             }
         }
+    }
+
+    public bool AreTasksForCurrentStepCompleted()
+    {
+        if (GameManager.Instance == null) return false;
+
+        DayPart step = GameManager.Instance.GetCurrentDayPart();
+        string[] tasksToCheck;
+
+        switch (step)
+        {
+            case DayPart.Matin:
+                tasksToCheck = new[] { "tridemail", "fichiercrush" };
+                break;
+
+            case DayPart.PauseDejeuner:
+                tasksToCheck = new[] { "pausedejeuner" };
+                break;
+
+            case DayPart.ApresMidi:
+                tasksToCheck = new[] { "fidelistesclients", "rapport" };
+                break;
+
+            default:
+                return true;
+        }
+
+        foreach (string task in tasksToCheck)
+        {
+            if (!IsTaskCompleted(task))
+                return false;
+        }
+
+        return true;
+    }
+
+    public bool IsTaskCompleted(string taskName)
+    {
+        string key = taskName.Trim().ToLower();
+        return completedTasks.Contains(key);
     }
 }
