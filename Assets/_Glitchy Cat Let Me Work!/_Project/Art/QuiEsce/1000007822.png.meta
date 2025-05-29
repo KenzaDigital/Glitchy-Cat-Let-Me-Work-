@@ -52,7 +52,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -118,10 +118,10 @@ TextureImporter:
       name: 1000007822_0
       rect:
         serializedVersion: 2
-        x: 90
-        y: 1149
-        width: 325
-        height: 428
+        x: 91
+        y: 1150
+        width: 323
+        height: 426
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,10 +140,10 @@ TextureImporter:
       name: 1000007822_1
       rect:
         serializedVersion: 2
-        x: 756
-        y: 1149
-        width: 325
-        height: 428
+        x: 757
+        y: 1150
+        width: 323
+        height: 426
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -162,10 +162,10 @@ TextureImporter:
       name: 1000007822_2
       rect:
         serializedVersion: 2
-        x: 90
-        y: 676
-        width: 325
-        height: 428
+        x: 91
+        y: 677
+        width: 323
+        height: 426
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,10 +184,10 @@ TextureImporter:
       name: 1000007822_3
       rect:
         serializedVersion: 2
-        x: 720
-        y: 690
-        width: 325
-        height: 429
+        x: 721
+        y: 691
+        width: 323
+        height: 427
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -206,10 +206,10 @@ TextureImporter:
       name: 1000007822_4
       rect:
         serializedVersion: 2
-        x: 120
-        y: 143
-        width: 324
-        height: 429
+        x: 121
+        y: 144
+        width: 322
+        height: 427
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -228,10 +228,10 @@ TextureImporter:
       name: 1000007822_5
       rect:
         serializedVersion: 2
-        x: 732
-        y: 131
-        width: 325
-        height: 428
+        x: 733
+        y: 132
+        width: 323
+        height: 426
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -250,7 +250,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 350a8d208e25b304b84c8c033d319111
     internalID: 0
     vertices: []
     indices: 
@@ -259,7 +259,13 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      1000007822_0: -8116789599214818807
+      1000007822_1: -3281487608206338614
+      1000007822_2: 1940276626227352327
+      1000007822_3: -4885890478066405485
+      1000007822_4: 2131770430937266386
+      1000007822_5: -4039003357465597541
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
