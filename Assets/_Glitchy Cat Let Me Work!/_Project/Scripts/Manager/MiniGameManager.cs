@@ -7,6 +7,7 @@ public enum MiniGameType
     FichierCrush,
     PongMeeting,
     PauseDejeuner,
+    FidéliseTesClients,
 }
 
 public class MiniGameManager : MonoBehaviour

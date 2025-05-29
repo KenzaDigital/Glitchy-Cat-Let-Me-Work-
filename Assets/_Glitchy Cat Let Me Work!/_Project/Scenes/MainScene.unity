@@ -1357,7 +1357,7 @@ MonoBehaviour:
   taskLabel: {fileID: 1968463930}
   taskText: pausedejeuner
   productivityGain: 10
-  alreadyCompleted: 1
+  alreadyCompleted: 0
 --- !u!1 &602630981
 GameObject:
   m_ObjectHideFlags: 0
@@ -1715,17 +1715,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4275193120257531477, guid: 087f7fe520b4ae8428e1e5967266a3be, type: 3}
   m_PrefabInstance: {fileID: 6625087975049221158}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &651155744 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5686380258088877644, guid: 087f7fe520b4ae8428e1e5967266a3be, type: 3}
-  m_PrefabInstance: {fileID: 6625087975049221158}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 651155741}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &651155745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1738,9 +1727,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac29a815b819d8f429dfdc08d49a1767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toggle: {fileID: 651155744}
+  toggle: {fileID: 0}
   taskLabel: {fileID: 2028321351}
-  taskText: Classe les Fichier
+  taskText: classer les fichiers
   productivityGain: 10
   alreadyCompleted: 0
 --- !u!1 &699811415
@@ -4108,7 +4097,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1451120672}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 930488891}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: LaunchQuiEsce
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1451120672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4493,8 +4494,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 1030095764}
     m_Modifications:
     - target: {fileID: 1676349893568975779, guid: 9e04edc7f70481d4fbced362afe3962d, type: 3}
+      propertyPath: taskKey
+      value: fidellisetesclients
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676349893568975779, guid: 9e04edc7f70481d4fbced362afe3962d, type: 3}
       propertyPath: taskText
-      value: FideliseTesClients
+      value: fidelistesclients
       objectReference: {fileID: 0}
     - target: {fileID: 1676349893568975779, guid: 9e04edc7f70481d4fbced362afe3962d, type: 3}
       propertyPath: taskLabel
@@ -6526,7 +6531,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 70, y: -28.6}
+  m_AnchoredPosition: {x: 59.8, y: -25.8}
   m_SizeDelta: {x: -28, y: -3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1968463929
@@ -7262,6 +7267,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1030095764}
     m_Modifications:
     - target: {fileID: 650956411458589700, guid: 87f16da40e6eca24a98d34635cc6dbf2, type: 3}
+      propertyPath: taskKey
+      value: tridemail
+      objectReference: {fileID: 0}
+    - target: {fileID: 650956411458589700, guid: 87f16da40e6eca24a98d34635cc6dbf2, type: 3}
       propertyPath: taskText
       value: Trier les mails
       objectReference: {fileID: 0}
@@ -7404,6 +7413,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1030095764}
     m_Modifications:
     - target: {fileID: 1676349893568975779, guid: 9e04edc7f70481d4fbced362afe3962d, type: 3}
+      propertyPath: taskKey
+      value: rapport
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676349893568975779, guid: 9e04edc7f70481d4fbced362afe3962d, type: 3}
       propertyPath: taskText
       value: Meeting
       objectReference: {fileID: 0}
@@ -7421,11 +7434,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4163229146658803974, guid: 9e04edc7f70481d4fbced362afe3962d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 96.2
+      value: 81.3
       objectReference: {fileID: 0}
     - target: {fileID: 4163229146658803974, guid: 9e04edc7f70481d4fbced362afe3962d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -45.2
+      value: -41.9
       objectReference: {fileID: 0}
     - target: {fileID: 4200213006001875231, guid: 9e04edc7f70481d4fbced362afe3962d, type: 3}
       propertyPath: m_Name

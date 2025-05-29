@@ -24,6 +24,8 @@ public class ToDoListUIManager : MonoBehaviour
                 // Vérifie si toutes les tâches du moment sont finies
                 if (ToDoListManager.Instance.AreTasksForCurrentStepCompleted())
                 {
+
+                    Debug.Log("Toutes les tâches complétées, passage à l'étape suivante !");
                     GameManager.Instance?.NextDayStep();
                 }
             }

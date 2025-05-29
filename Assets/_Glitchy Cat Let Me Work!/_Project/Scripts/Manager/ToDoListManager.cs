@@ -121,12 +121,14 @@ public class ToDoListManager : MonoBehaviour
         if (GameManager.Instance == null) return false;
 
         DayPart step = GameManager.Instance.GetCurrentDayPart();
+        Debug.Log($"🔄 Vérification des tâches pour l'étape : {step}");
+
         string[] tasksToCheck;
 
         switch (step)
         {
             case DayPart.Matin:
-                tasksToCheck = new[] { "tridemail", "fichiercrush" };
+                tasksToCheck = new[] { "trierlesmails", "ficlasefichier" };
                 break;
 
             case DayPart.PauseDejeuner:
@@ -138,15 +140,19 @@ public class ToDoListManager : MonoBehaviour
                 break;
 
             default:
+                Debug.Log("⚠️ Étape inconnue ou terminée");
                 return true;
         }
 
         foreach (string task in tasksToCheck)
         {
-            if (!IsTaskCompleted(task))
+            bool isCompleted = IsTaskCompleted(task);
+            Debug.Log($"➡️ Tâche '{task}' complétée ? {isCompleted}");
+            if (!isCompleted)
                 return false;
         }
 
+        Debug.Log("✅ Toutes les tâches sont complétées pour cette étape.");
         return true;
     }
 

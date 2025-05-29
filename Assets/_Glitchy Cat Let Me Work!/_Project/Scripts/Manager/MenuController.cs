@@ -19,8 +19,12 @@ public class MenuController : MonoBehaviour
         GameManager.Instance.LoadScene("PauseDej");
     }
 
-   
+    public void LaunchQuiEsce()
+    {
+        GameManager.Instance.LoadScene("QuiEsce");
 
 
-   
-}
+    }
+
+
+    }
