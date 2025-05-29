@@ -548,7 +548,7 @@ MonoBehaviour:
   - {fileID: 1940276626227352327, guid: be18cb535d795dc4faa3677e4cc7b2a4, type: 3}
   - {fileID: -4885890478066405485, guid: be18cb535d795dc4faa3677e4cc7b2a4, type: 3}
   cardBack: {fileID: 3210647553109158514, guid: 76b58bad88b3459498a3a1658efd679c, type: 3}
-  numberOfPairs: 8
+  numberOfPairs: 10
 --- !u!4 &660042517
 Transform:
   m_ObjectHideFlags: 0
@@ -850,7 +850,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1105,7 +1105,7 @@ RectTransform:
   m_GameObject: {fileID: 1506476116}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.94865376, y: 0.66537213, z: 0.8647025}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6892225596453008937}
@@ -1123,8 +1123,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1, y: -1}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 17, y: 111}
+  m_SizeDelta: {x: -1, y: -1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1506476118
 MonoBehaviour:
@@ -1230,7 +1230,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.13473274, y: -0.492024, z: 0.010989452}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.27, y: 1.282918, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 51248370}
