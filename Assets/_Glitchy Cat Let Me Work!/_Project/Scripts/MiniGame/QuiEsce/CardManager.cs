@@ -21,6 +21,7 @@ public class CardManager : MonoBehaviour
     }
     private void Start()
     {
+        audioManager.instance.PlayMusic("QuiEsce", true);
         MiniGameManager.Instance.SetCurrentMiniGame(MiniGameType.FidéliseTesClients);
     }
 
@@ -102,6 +103,8 @@ public class CardManager : MonoBehaviour
     {
         Debug.Log("Game Over – plus de productivité !");
         canReveal = false;
+        audioManager.instance.StopMusic();
+
         StartCoroutine(LoadGameOverScene());
     }
 
