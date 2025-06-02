@@ -7643,7 +7643,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1676349893568975779, guid: 9e04edc7f70481d4fbced362afe3962d, type: 3}
       propertyPath: taskText
-      value: Meeting
+      value: meeting
       objectReference: {fileID: 0}
     - target: {fileID: 1676349893568975779, guid: 9e04edc7f70481d4fbced362afe3962d, type: 3}
       propertyPath: taskLabel

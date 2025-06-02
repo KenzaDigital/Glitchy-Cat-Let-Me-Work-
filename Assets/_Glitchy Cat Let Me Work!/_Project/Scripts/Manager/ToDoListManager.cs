@@ -51,23 +51,34 @@ public class ToDoListManager : MonoBehaviour
     public void MarkTaskCompletedByName(string taskName)
     {
         string key = taskName.Trim().ToLower();
+        Debug.Log("🔍 Tentative de marquer la tâche comme complétée : " + key);
 
         if (completedTasks.Contains(key))
+        {
+            Debug.Log("⚠️ Tâche déjà marquée comme complétée : " + key);
             return;
+        }
 
         completedTasks.Add(key);
         PlayerPrefs.SetInt(key, 1);
         PlayerPrefs.Save();
 
+        Debug.Log("✅ Tâche marquée comme complétée et sauvegardée dans PlayerPrefs : " + key);
+
         foreach (var task in tasks)
         {
+            Debug.Log("🔁 Comparaison avec la tâche : " + task.GetTaskKey());
             if (task.GetTaskKey() == key)
             {
+                Debug.Log("✅ Correspondance trouvée, tâche complétée dans la UI : " + key);
                 task.CompleteTask();
                 return;
             }
         }
+
+        Debug.Log("❌ Aucune tâche trouvée avec la clé : " + key);
     }
+
 
     private void LoadCompletedTasks()
     {
@@ -77,6 +88,7 @@ public class ToDoListManager : MonoBehaviour
         {
             if (PlayerPrefs.GetInt(key, 0) == 1)
             {
+                Debug.Log("Tâche chargée comme complétée : " + key);
                 completedTasks.Add(key);
             }
         }
@@ -93,8 +105,8 @@ public class ToDoListManager : MonoBehaviour
 
     private IEnumerable<string> PlayerPrefsKeys()
     {
-        yield return "tridemail";
-        yield return "fichiercrush";
+        yield return "trierlesmails";
+        yield return "classerlesfichiers";
         yield return "meeting";
         yield return "pausedejeuner";
         yield return "fidelistesclients";

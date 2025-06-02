@@ -6,6 +6,7 @@ public class ToDoListUIManager : MonoBehaviour
     {
         if (ToDoListManager.Instance != null)
         {
+            // Synchronise l'état des tâches depuis les données sauvegardées
             ToDoListManager.Instance.SyncTasksState();
         }
 
@@ -19,15 +20,25 @@ public class ToDoListUIManager : MonoBehaviour
 
                 if (!string.IsNullOrEmpty(taskKey))
                 {
+                    // Marque la tâche comme complétée et sauvegarde
                     ToDoListManager.Instance.MarkTaskCompletedByName(taskKey);
                     ToDoListManager.Instance.SaveCompletedTasks();
 
+                    // 🔄 Recharge les états des tâches depuis les données sauvegardées
+                    ToDoListManager.Instance.SyncTasksState();
+
+                    // Réinitialise le mini-jeu actif
                     MiniGameManager.Instance.ClearCurrentMiniGame();
 
+                    // ✅ Vérifie si toutes les tâches de l'étape sont complétées
                     if (ToDoListManager.Instance.AreTasksForCurrentStepCompleted())
                     {
                         Debug.Log("✅ Toutes les tâches complétées, passage à l'étape suivante !");
                         GameManager.Instance?.NextDayStep();
+                    }
+                    else
+                    {
+                        Debug.Log("🔁 Certaines tâches restent à faire pour cette étape.");
                     }
                 }
                 else
