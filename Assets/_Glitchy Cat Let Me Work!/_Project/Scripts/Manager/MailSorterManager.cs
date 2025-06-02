@@ -71,6 +71,8 @@ public class MailSorterManager : MonoBehaviour
             ToDoListManager.Instance?.MarkTaskCompletedByName("trierlesmails");
             MiniGameManager.Instance.SetCurrentMiniGame(MiniGameType.None);
 
+            TutorialManager.Instance?.AdvanceStep();
+
             return;
         }
 
