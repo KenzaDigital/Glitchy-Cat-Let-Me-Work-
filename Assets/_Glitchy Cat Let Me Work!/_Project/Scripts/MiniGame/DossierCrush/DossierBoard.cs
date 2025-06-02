@@ -366,7 +366,7 @@ public class DossierBoard : MonoBehaviour
             Debug.Log("✅ Victoire dans FichierCrush");
 
             MiniGameManager.Instance?.SetCurrentMiniGame(MiniGameType.FichierCrush);
-            ToDoListManager.Instance?.MarkTaskCompletedByName("classer les fichiers"); 
+            ToDoListManager.Instance?.MarkTaskCompletedByName("classerlesfichiers"); 
             ToDoListManager.Instance?.SaveCompletedTasks();
 
             ProductivityManager.Instance?.AddProductivity(10);  // Récompense

@@ -68,7 +68,7 @@ public class PongGameManager : MonoBehaviour
 
         if (playerWon)
         {
-            ToDoListManager.Instance?.MarkTaskCompletedByName("Meeting"); // 
+            ToDoListManager.Instance?.MarkTaskCompletedByName("meeting"); // 
             ProductivityManager.Instance?.AddProductivity(10);
         }
         else

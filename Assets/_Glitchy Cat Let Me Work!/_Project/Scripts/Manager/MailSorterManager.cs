@@ -68,7 +68,7 @@ public class MailSorterManager : MonoBehaviour
 
             Debug.Log("🟢 Tous les mails sont finis. Tentative de marquer la tâche comme complétée...");
             audioManager.instance.PlaySFX("Achievement"); // ✅ SFX de fin
-            ToDoListManager.Instance?.MarkTaskCompletedByName("Trier les mails");
+            ToDoListManager.Instance?.MarkTaskCompletedByName("trierlesmails");
             MiniGameManager.Instance.SetCurrentMiniGame(MiniGameType.None);
 
             return;
