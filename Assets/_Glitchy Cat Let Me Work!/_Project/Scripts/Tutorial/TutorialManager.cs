@@ -2,24 +2,8 @@
 
 public class TutorialManager : MonoBehaviour
 {
-    public static TutorialManager Instance;
-
-    public TutorialHighlighter[] steps;
+    public TutorialHighlighter[] steps;  // ordre du tutoriel
     private int currentIndex = 0;
-
-    void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject); // garde ce manager entre les scènes si besoin
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
-    }
 
     void Start()
     {
@@ -46,7 +30,6 @@ public class TutorialManager : MonoBehaviour
             }
         }
     }
-
     void HighlightCurrent()
     {
         if (currentIndex < steps.Length)
