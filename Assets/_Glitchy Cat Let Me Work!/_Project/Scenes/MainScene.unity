@@ -583,7 +583,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 356, y: 410}
-  m_SizeDelta: {x: 160, y: 25}
+  m_SizeDelta: {x: 160, y: 18}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &122092359
 MonoBehaviour:
@@ -860,6 +860,7 @@ GameObject:
   - component: {fileID: 387324918}
   - component: {fileID: 387324917}
   - component: {fileID: 387324916}
+  - component: {fileID: 387324919}
   m_Layer: 5
   m_Name: KitchenButton
   m_TagString: Untagged
@@ -942,6 +943,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1956621738}
+        m_TargetAssemblyTypeName: TutorialManager, Assembly-CSharp
+        m_MethodName: AdvanceStep
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &387324917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -980,6 +993,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 387324914}
   m_CullTransparentMesh: 1
+--- !u!114 &387324919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 387324914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44c860ba43feca848964f0d2280dcc6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &482891236
 GameObject:
   m_ObjectHideFlags: 0
@@ -1806,7 +1831,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toggle: {fileID: 0}
   taskLabel: {fileID: 2028321351}
-  taskText: classer les fichiers
+  taskText: classerlesfichiers
   productivityGain: 10
   alreadyCompleted: 0
 --- !u!1 &699811415
@@ -2253,8 +2278,9 @@ GameObject:
   - component: {fileID: 787341739}
   - component: {fileID: 787341738}
   - component: {fileID: 787341741}
+  - component: {fileID: 787341742}
   m_Layer: 5
-  m_Name: Button_OpenMail
+  m_Name: Button_trierlesmails
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2269,14 +2295,14 @@ RectTransform:
   m_GameObject: {fileID: 787341736}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.24370557, y: 2.0471554, z: 0.92774826}
+  m_LocalScale: {x: 4.7183943, y: 3.2004251, z: 1.1466281}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1881659419}
+  m_Father: {fileID: 1361652973}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -353.65967, y: 39.634396}
+  m_AnchoredPosition: {x: 188.58319, y: -60.760685}
   m_SizeDelta: {x: 260.333, y: 24.1126}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &787341738
@@ -2335,6 +2361,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1956621738}
+        m_TargetAssemblyTypeName: TutorialManager, Assembly-CSharp
+        m_MethodName: AdvanceStep
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &787341739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2383,6 +2421,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3c56de5bc2c19e4593d2e2bcbe7f28e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &787341742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 787341736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44c860ba43feca848964f0d2280dcc6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &789100919
@@ -4059,6 +4109,7 @@ RectTransform:
   - {fileID: 2047332547}
   - {fileID: 1451120670}
   - {fileID: 1587815403}
+  - {fileID: 787341737}
   m_Father: {fileID: 1881659419}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4117,8 +4168,9 @@ GameObject:
   - component: {fileID: 1451120672}
   - component: {fileID: 1451120671}
   - component: {fileID: 1451120674}
+  - component: {fileID: 1451120675}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: "Button_fid\xE9lisetesclients"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4199,6 +4251,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1956621738}
+        m_TargetAssemblyTypeName: TutorialManager, Assembly-CSharp
+        m_MethodName: AdvanceStep
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1451120672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4247,6 +4311,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3c56de5bc2c19e4593d2e2bcbe7f28e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1451120675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451120669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44c860ba43feca848964f0d2280dcc6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1464832494
@@ -4764,8 +4840,9 @@ GameObject:
   - component: {fileID: 1587815405}
   - component: {fileID: 1587815404}
   - component: {fileID: 1587815407}
+  - component: {fileID: 1587815408}
   m_Layer: 5
-  m_Name: Button (3)
+  m_Name: Button_meeting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4846,6 +4923,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1956621738}
+        m_TargetAssemblyTypeName: TutorialManager, Assembly-CSharp
+        m_MethodName: AdvanceStep
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1587815405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4894,6 +4983,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3c56de5bc2c19e4593d2e2bcbe7f28e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1587815408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1587815402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44c860ba43feca848964f0d2280dcc6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1592127050
@@ -5218,7 +5319,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9245283, g: 0.06541473, b: 0.06541473, a: 1}
+  m_Color: {r: 0.990566, g: 0.990566, b: 0.990566, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5929,8 +6030,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 37.9, y: 27.3}
-  m_SizeDelta: {x: 500, y: 50}
+  m_AnchoredPosition: {x: 69, y: 30}
+  m_SizeDelta: {x: 800, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1808553397
 MonoBehaviour:
@@ -5952,7 +6053,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Productivit\xE9 de la journ\xE9e"
+  m_text: "Productivit\xE9 de la journ\xE9e (tombe pas \xE0 z\xE9ro)\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4f8ceb3675667b04dab1cbea7732a9ec, type: 2}
   m_sharedMaterial: {fileID: -6642240101119268437, guid: 4f8ceb3675667b04dab1cbea7732a9ec, type: 2}
@@ -6167,7 +6268,6 @@ RectTransform:
   m_Children:
   - {fileID: 829847489}
   - {fileID: 1361652973}
-  - {fileID: 787341737}
   m_Father: {fileID: 982809859}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
@@ -6548,6 +6648,56 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &1956621737
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1956621739}
+  - component: {fileID: 1956621738}
+  m_Layer: 0
+  m_Name: TutorialManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1956621738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956621737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fd5646116bf8754cb34d5a1881a2f8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  steps:
+  - {fileID: 787341742}
+  - {fileID: 2047332552}
+  - {fileID: 387324919}
+  - {fileID: 1451120675}
+  - {fileID: 1587815408}
+--- !u!4 &1956621739
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956621737}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1332.6202, y: 839.2166, z: -0.089513466}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1960686038 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5323182590425573176, guid: 9e04edc7f70481d4fbced362afe3962d, type: 3}
@@ -7100,8 +7250,9 @@ GameObject:
   - component: {fileID: 2047332549}
   - component: {fileID: 2047332548}
   - component: {fileID: 2047332551}
+  - component: {fileID: 2047332552}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Button_classerlesdossier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7182,6 +7333,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1956621738}
+        m_TargetAssemblyTypeName: TutorialManager, Assembly-CSharp
+        m_MethodName: AdvanceStep
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2047332549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7230,6 +7393,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3c56de5bc2c19e4593d2e2bcbe7f28e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2047332552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2047332546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44c860ba43feca848964f0d2280dcc6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &363904549311370113
@@ -7497,7 +7672,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 650956411458589700, guid: 87f16da40e6eca24a98d34635cc6dbf2, type: 3}
       propertyPath: taskText
-      value: Trier les mails
+      value: trierlesmails
       objectReference: {fileID: 0}
     - target: {fileID: 650956411458589700, guid: 87f16da40e6eca24a98d34635cc6dbf2, type: 3}
       propertyPath: taskLabel
@@ -8062,3 +8237,4 @@ SceneRoots:
   - {fileID: 1587411885}
   - {fileID: 2013439468}
   - {fileID: 1592127053}
+  - {fileID: 1956621739}
