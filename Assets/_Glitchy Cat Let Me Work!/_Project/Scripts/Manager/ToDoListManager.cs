@@ -128,7 +128,7 @@ public class ToDoListManager : MonoBehaviour
         switch (step)
         {
             case DayPart.Matin:
-                tasksToCheck = new[] { "trierlesmails", "ficlasefichier" };
+                tasksToCheck = new[] { "trierlesmails", "classerlesfichiers" };
                 break;
 
             case DayPart.PauseDejeuner:
@@ -136,7 +136,7 @@ public class ToDoListManager : MonoBehaviour
                 break;
 
             case DayPart.ApresMidi:
-                tasksToCheck = new[] { "fidelistesclients", "rapport" };
+                tasksToCheck = new[] { "fidelistesclients", "meeting" };
                 break;
 
             default:

@@ -1,4 +1,4 @@
-using UnityEngine;
+Ôªøusing UnityEngine;
 
 public class ToDoListUIManager : MonoBehaviour
 {
@@ -15,20 +15,45 @@ public class ToDoListUIManager : MonoBehaviour
 
             if (lastGame != MiniGameType.None)
             {
-                // Marquer la t‚che comme complÈtÈe
-                ToDoListManager.Instance.MarkTaskCompletedByName(lastGame.ToString());
-                ToDoListManager.Instance.SaveCompletedTasks();
+                string taskKey = GetTaskKeyFromMiniGame(lastGame);
 
-                MiniGameManager.Instance.ClearCurrentMiniGame();
-
-                // VÈrifie si toutes les t‚ches du moment sont finies
-                if (ToDoListManager.Instance.AreTasksForCurrentStepCompleted())
+                if (!string.IsNullOrEmpty(taskKey))
                 {
+                    ToDoListManager.Instance.MarkTaskCompletedByName(taskKey);
+                    ToDoListManager.Instance.SaveCompletedTasks();
 
-                    Debug.Log("Toutes les t‚ches complÈtÈes, passage ‡ l'Ètape suivante !");
-                    GameManager.Instance?.NextDayStep();
+                    MiniGameManager.Instance.ClearCurrentMiniGame();
+
+                    if (ToDoListManager.Instance.AreTasksForCurrentStepCompleted())
+                    {
+                        Debug.Log("‚úÖ Toutes les t√¢ches compl√©t√©es, passage √† l'√©tape suivante !");
+                        GameManager.Instance?.NextDayStep();
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning($"‚ö†Ô∏è Aucune correspondance de t√¢che trouv√©e pour le mini-jeu : {lastGame}");
                 }
             }
+        }
+    }
+
+    private string GetTaskKeyFromMiniGame(MiniGameType miniGame)
+    {
+        switch (miniGame)
+        {
+            case MiniGameType.TriDeMail:
+                return "trierlesmails";
+            case MiniGameType.FichierCrush:
+                return "classerlesfichiers";
+            case MiniGameType.PauseDejeuner:
+                return "pausedejeuner";
+            case MiniGameType.Fid√©liseTesClients:
+                return "fidelistesclients";
+            case MiniGameType.PongMeeting:
+                return "meeting";
+            default:
+                return null;
         }
     }
 }
