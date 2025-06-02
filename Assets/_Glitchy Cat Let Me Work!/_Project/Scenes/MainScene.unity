@@ -5038,7 +5038,7 @@ MonoBehaviour:
   - name: PauseDejeuner
     clip: {fileID: 8300000, guid: f4e010d74819ef942982bfbf3a94654d, type: 3}
   - name: QuiEsce
-    clip: {fileID: 8300000, guid: 9c04c34e79dc6864ebf9fcf923d33fcf, type: 3}
+    clip: {fileID: 8300000, guid: 77f46c434b4d92844a5d0b366d894374, type: 3}
   sfxSounds:
   - name: Clic
     clip: {fileID: 8300000, guid: f33bec513d153c445984769530615dd0, type: 3}
