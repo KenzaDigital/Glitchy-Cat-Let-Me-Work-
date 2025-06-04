@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class MailSorterManager : MonoBehaviour
 {
@@ -198,6 +199,8 @@ public class MailSorterManager : MonoBehaviour
         openMailButton.interactable = false;
 
         MiniGameManager.Instance.SetCurrentMiniGame(MiniGameType.None);
+        // Charger la scène GameOverScene
+        SceneManager.LoadScene("GameOverScene");
     }
 
     public void OpenMail()

@@ -18,6 +18,10 @@ public class MainMenu : MonoBehaviour
         
         Debug.Log("Options ouvertes");
     }
+    public void Menu()
+    {
+        SceneManager.LoadScene("Menu");
+    }
 
     public void Quitter()
     {
