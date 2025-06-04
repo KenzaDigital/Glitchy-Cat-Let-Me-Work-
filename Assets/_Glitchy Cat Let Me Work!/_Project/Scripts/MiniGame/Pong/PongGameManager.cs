@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System.Collections;
 
 public class PongGameManager : MonoBehaviour
 {
@@ -51,6 +52,7 @@ public class PongGameManager : MonoBehaviour
         if (leftScore >= maxScore)
         {
             EndGame(true, "PUNCHLINE!"); // victoire joueur gauche
+            StartCoroutine(WaitAndLoad("VictoryScene"));
         }
         else if (rightScore >= maxScore)
         {
@@ -97,5 +99,10 @@ public class PongGameManager : MonoBehaviour
     {
         audioManager.instance.StopMusic();
         SceneManager.LoadScene("GameOverScene");
+    }
+    private IEnumerator WaitAndLoad(string sceneName)
+    {
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene(sceneName);
     }
 }
