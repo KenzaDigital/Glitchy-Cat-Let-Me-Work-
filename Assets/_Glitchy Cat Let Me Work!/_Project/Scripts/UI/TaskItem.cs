@@ -22,7 +22,7 @@ public class TaskItem : MonoBehaviour
 
     private void OnDestroy()
     {
-        ToDoListManager.Instance?.Unsubscrible(this);
+        ToDoListManager.Instance?.Unsubscribe(this);
     }
 
     public void CompleteTask()

@@ -2,8 +2,24 @@
 
 public class TutorialManager : MonoBehaviour
 {
+    public static TutorialManager Instance { get; private set; }
+
     public TutorialHighlighter[] steps;  // ordre du tutoriel
     private int currentIndex = 0;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+    }
 
     void Start()
     {
@@ -30,6 +46,7 @@ public class TutorialManager : MonoBehaviour
             }
         }
     }
+
     void HighlightCurrent()
     {
         if (currentIndex < steps.Length)
@@ -40,6 +57,15 @@ public class TutorialManager : MonoBehaviour
         else
         {
             Debug.Log("Tutoriel terminé !");
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("Espace pressé, avancée de l'étape du tutoriel");
+            AdvanceStep();
         }
     }
 }

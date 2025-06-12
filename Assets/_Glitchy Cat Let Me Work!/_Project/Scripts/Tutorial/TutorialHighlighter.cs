@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 
 public class TutorialHighlighter : MonoBehaviour
@@ -17,7 +17,7 @@ public class TutorialHighlighter : MonoBehaviour
         originalScale = transform.localScale;
         imageComponent = GetComponent<Image>();
 
-        // Remet la couleur normale au démarrage
+        // Remet la couleur normale au dï¿½marrage
         if (imageComponent != null)
             imageComponent.color = normalColor;
     }
@@ -30,7 +30,7 @@ public class TutorialHighlighter : MonoBehaviour
             float scale = 1f + Mathf.Sin(Time.time * 4f) * 0.05f;
             transform.localScale = originalScale * scale;
 
-            // Debug moins répétitif : afficher une fois par seconde max
+            // Debug moins rï¿½pï¿½titif : afficher une fois par seconde max
             if (Time.frameCount % 60 == 0)
                 Debug.Log($"Highlight actif sur {gameObject.name}");
         }
@@ -43,7 +43,7 @@ public class TutorialHighlighter : MonoBehaviour
         if (imageComponent != null)
             imageComponent.color = highlightColor;
 
-        Debug.Log($"ActivateHighlight appelé sur {gameObject.name}");
+        Debug.Log($"ActivateHighlight appelï¿½ sur {gameObject.name}");
     }
 
     public void DeactivateHighlight()
@@ -54,6 +54,6 @@ public class TutorialHighlighter : MonoBehaviour
         if (imageComponent != null)
             imageComponent.color = normalColor;
 
-        Debug.Log($"DeactivateHighlight appelé sur {gameObject.name}");
+        Debug.Log($"DeactivateHighlight appelï¿½ sur {gameObject.name}");
     }
 }

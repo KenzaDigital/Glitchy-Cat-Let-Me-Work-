@@ -24,12 +24,6 @@ public class ToDoListManager : MonoBehaviour
         }
     }
 
-    public void Start()
-    {
-        PlayerPrefs.DeleteAll();
-        PlayerPrefs.Save();
-    }
-
     public void RegisterTask(TaskItem task)
     {
         if (!tasks.Contains(task))
@@ -40,56 +34,43 @@ public class ToDoListManager : MonoBehaviour
         {
             task.CompleteTask();
         }
-    }
-
-    public void Unsubscrible(TaskItem task)
-    {
-        if (tasks.Contains(task))
-            tasks.Remove(task);
+        else
+        {
+            task.ResetTask();
+        }
     }
 
     public void MarkTaskCompletedByName(string taskName)
     {
         string key = taskName.Trim().ToLower();
-        Debug.Log("🔍 Tentative de marquer la tâche comme complétée : " + key);
-
-        if (completedTasks.Contains(key))
-        {
-            Debug.Log("⚠️ Tâche déjà marquée comme complétée : " + key);
-            return;
-        }
+        if (completedTasks.Contains(key)) return;
 
         completedTasks.Add(key);
         PlayerPrefs.SetInt(key, 1);
         PlayerPrefs.Save();
 
-        Debug.Log("✅ Tâche marquée comme complétée et sauvegardée dans PlayerPrefs : " + key);
-
         foreach (var task in tasks)
         {
-            Debug.Log("🔁 Comparaison avec la tâche : " + task.GetTaskKey());
             if (task.GetTaskKey() == key)
             {
-                Debug.Log("✅ Correspondance trouvée, tâche complétée dans la UI : " + key);
                 task.CompleteTask();
-                return;
+                break;
             }
         }
 
-        Debug.Log("❌ Aucune tâche trouvée avec la clé : " + key);
+        // Dès qu'une tâche est complétée, on vérifie si on peut avancer le tutoriel
+        CheckAndAdvanceTutorialIfNeeded();
     }
 
-
-    private void LoadCompletedTasks()
+    private void CheckAndAdvanceTutorialIfNeeded()
     {
-        completedTasks.Clear();
-
-        foreach (string key in PlayerPrefsKeys())
+        if (AreTasksForCurrentStepCompleted())
         {
-            if (PlayerPrefs.GetInt(key, 0) == 1)
+            GameManager.Instance?.NextDayStep();
+
+            if (TutorialManager.Instance != null)
             {
-                Debug.Log("Tâche chargée comme complétée : " + key);
-                completedTasks.Add(key);
+                TutorialManager.Instance.AdvanceStep();
             }
         }
     }
@@ -103,37 +84,11 @@ public class ToDoListManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    private IEnumerable<string> PlayerPrefsKeys()
-    {
-        yield return "trierlesmails";
-        yield return "classerlesfichiers";
-        yield return "meeting";
-        yield return "pausedejeuner";
-        yield return "fidelistesclients";
-    }
-
-    public void SyncTasksState()
-    {
-        foreach (var task in tasks)
-        {
-            string key = task.GetTaskKey();
-            if (completedTasks.Contains(key))
-            {
-                task.CompleteTask();
-            }
-            else
-            {
-                task.ResetTask();
-            }
-        }
-    }
-
     public bool AreTasksForCurrentStepCompleted()
     {
         if (GameManager.Instance == null) return false;
 
         DayPart step = GameManager.Instance.GetCurrentDayPart();
-        Debug.Log($"🔄 Vérification des tâches pour l'étape : {step}");
 
         string[] tasksToCheck;
 
@@ -142,35 +97,57 @@ public class ToDoListManager : MonoBehaviour
             case DayPart.Matin:
                 tasksToCheck = new[] { "trierlesmails", "classerlesfichiers" };
                 break;
-
             case DayPart.PauseDejeuner:
                 tasksToCheck = new[] { "pausedejeuner" };
                 break;
-
             case DayPart.ApresMidi:
                 tasksToCheck = new[] { "fidelistesclients", "meeting" };
                 break;
-
             default:
-                Debug.Log("⚠️ Étape inconnue ou terminée");
                 return true;
         }
 
         foreach (string task in tasksToCheck)
         {
-            bool isCompleted = IsTaskCompleted(task);
-            Debug.Log($"➡️ Tâche '{task}' complétée ? {isCompleted}");
-            if (!isCompleted)
+            if (!completedTasks.Contains(task))
                 return false;
         }
 
-        Debug.Log("✅ Toutes les tâches sont complétées pour cette étape.");
         return true;
     }
 
-    public bool IsTaskCompleted(string taskName)
+    private void LoadCompletedTasks()
     {
-        string key = taskName.Trim().ToLower();
-        return completedTasks.Contains(key);
+        completedTasks.Clear();
+
+        string[] keys = { "trierlesmails", "classerlesfichiers", "pausedejeuner", "fidelistesclients", "meeting" };
+        foreach (string key in keys)
+        {
+            if (PlayerPrefs.GetInt(key, 0) == 1)
+            {
+                Debug.Log("Tâche déjà complétée au chargement : " + key);
+                completedTasks.Add(key);
+            }
+        }
+    }
+
+    public void SyncTasksState()
+    {
+        foreach (var task in tasks)
+        {
+            string key = task.GetTaskKey();
+            if (completedTasks.Contains(key))
+                task.CompleteTask();
+            else
+                task.ResetTask();
+        }
+    }
+
+    public void Unsubscribe(TaskItem task)
+    {
+        if (tasks.Contains(task))
+        {
+            tasks.Remove(task);
+        }
     }
 }
